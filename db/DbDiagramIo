@@ -1,0 +1,26 @@
+table "Stores.Store" {
+  Id uniqueidentifier [pk, default: `NEWID()`]
+}
+
+table "Stores.Article" {
+  Id uniqueidentifier [pk, default: `NEWID()`]
+  CodeDob varchar(25) [not null]
+  Code varchar(250) [not null]
+  Name varchar(250) [not null]
+  Entry decimal(20,10) [not null]
+  Exit decimal(20,10) [not null]
+  SingularPrice decimal(20,10) [not null]
+  Owe decimal(20,10) [not null]
+  Tariff decimal(20,10) [not null]
+  PLA varchar(100) [not null]
+  OP decimal(20,10) [not null]
+  Rebate decimal(20,10) [not null]
+  BuyPrice decimal(20,10) [not null]
+  Tax decimal(20,10) [not null]
+  StoreId uniqueidentifier [not null]
+  Indexes{
+    StoreId [name: "IXFK_Article_StoreId", unique]
+  }
+}
+
+Ref "IX_Article_ArticleId" : "Stores.Article".StoreId > "Stores.Store".Id [delete: cascade]

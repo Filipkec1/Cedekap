@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31624.102
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diplomski.API", "Diplomski\Diplomski.API\Diplomski.API.csproj", "{907A8216-8CE6-4A37-8A1B-82A9581314B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Diplomski\Test\Test.csproj", "{93EAE5D0-CF07-44E1-A761-45D596A7F494}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diplomski.Core", "Diplomski\Diplomski.Core\Diplomski.Core.csproj", "{A265F776-73A7-4E22-8BEA-5AA95786761A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diplomski.API", "src\Diplomski.API\Diplomski.API.csproj", "{D25BBBA3-B624-4E07-B686-0D97D41BB2DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Diplomski\Test\Test.csproj", "{93EAE5D0-CF07-44E1-A761-45D596A7F494}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diplomski.Core", "src\Diplomski.Core\Diplomski.Core.csproj", "{5D0BF03A-6385-4FCA-958B-5D358312BE97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diplomski.Infrastructure", "src\Diplomski.Infrastructure\Diplomski.Infrastructure.csproj", "{8115CFAA-03DA-4F64-B0DB-FA978643F825}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,18 +17,22 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{907A8216-8CE6-4A37-8A1B-82A9581314B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{907A8216-8CE6-4A37-8A1B-82A9581314B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{907A8216-8CE6-4A37-8A1B-82A9581314B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{907A8216-8CE6-4A37-8A1B-82A9581314B8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A265F776-73A7-4E22-8BEA-5AA95786761A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A265F776-73A7-4E22-8BEA-5AA95786761A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A265F776-73A7-4E22-8BEA-5AA95786761A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A265F776-73A7-4E22-8BEA-5AA95786761A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{93EAE5D0-CF07-44E1-A761-45D596A7F494}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{93EAE5D0-CF07-44E1-A761-45D596A7F494}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93EAE5D0-CF07-44E1-A761-45D596A7F494}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93EAE5D0-CF07-44E1-A761-45D596A7F494}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D25BBBA3-B624-4E07-B686-0D97D41BB2DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D25BBBA3-B624-4E07-B686-0D97D41BB2DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D25BBBA3-B624-4E07-B686-0D97D41BB2DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D25BBBA3-B624-4E07-B686-0D97D41BB2DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D0BF03A-6385-4FCA-958B-5D358312BE97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D0BF03A-6385-4FCA-958B-5D358312BE97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D0BF03A-6385-4FCA-958B-5D358312BE97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D0BF03A-6385-4FCA-958B-5D358312BE97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8115CFAA-03DA-4F64-B0DB-FA978643F825}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8115CFAA-03DA-4F64-B0DB-FA978643F825}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8115CFAA-03DA-4F64-B0DB-FA978643F825}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8115CFAA-03DA-4F64-B0DB-FA978643F825}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

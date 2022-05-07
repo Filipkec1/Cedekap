@@ -1,0 +1,43 @@
+﻿{
+   "CodeGenerationMode": 0,
+   "ContextClassName": "DiplomskiDbContext",
+   "ContextNamespace": "Infrastructure.EfModels",
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": "Core.Models.Entities",
+   "OutputContextPath": "..\\Diplomski.Infrastructure\\EfModels",
+   "OutputPath": "..\\Diplomski.Core\\Models\\Entities",
+   "ProjectRootNamespace": "Diplomski",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "Name": "[Stores].[Article]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Stores].[Store]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": "DESKTOP-LG8196C.DiplomskiDb",
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoConstructor": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSpatial": false
+}
