@@ -22,7 +22,8 @@ GO
 /* Create Tables */
 /* Stores */
 CREATE TABLE [Stores].[Store] (
-  [Id] uniqueidentifier PRIMARY KEY DEFAULT (NEWID())
+  [Id] uniqueidentifier PRIMARY KEY DEFAULT (NEWID()),
+  [Name] varchar(3) NOT NULL
 )
 GO
 
@@ -35,6 +36,7 @@ CREATE TABLE [Stores].[Article] (
   [Exit] decimal(20,10) NOT NULL,
   [SingularPrice] decimal(20,10) NOT NULL,
   [Owe] decimal(20,10) NOT NULL,
+  [Demand] decimal(20,10) NOT NULL,
   [Tariff] decimal(20,10) NOT NULL,
   [PLA] varchar(100) NOT NULL,
   [OP] decimal(20,10) NOT NULL,

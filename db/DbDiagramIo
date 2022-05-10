@@ -1,5 +1,6 @@
 table "Stores.Store" {
   Id uniqueidentifier [pk, default: `NEWID()`]
+  Name varchar(3) [not null]
 }
 
 table "Stores.Article" {
@@ -11,6 +12,7 @@ table "Stores.Article" {
   Exit decimal(20,10) [not null]
   SingularPrice decimal(20,10) [not null]
   Owe decimal(20,10) [not null]
+  Demand decimal(20,10) [not null]
   Tariff decimal(20,10) [not null]
   PLA varchar(100) [not null]
   OP decimal(20,10) [not null]

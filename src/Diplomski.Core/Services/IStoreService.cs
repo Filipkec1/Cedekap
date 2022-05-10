@@ -1,4 +1,5 @@
-﻿using Diplomski.Core.Requests;
+﻿using Diplomski.Core.Models.Entities;
+using Diplomski.Core.Requests;
 using Diplomski.Core.Results;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ namespace Diplomski.Core.Services
     /// </summary>
     public interface IStoreService
     {
+
+
         /// <summary>
         /// Gets all people.
         /// </summary>
@@ -42,5 +45,12 @@ namespace Diplomski.Core.Services
         /// </summary>
         /// <param name="id">Store database id.</param>
         Task Delete(Guid id);
+
+        /// <summary>
+        /// Create new <see cref="Article"/> in the database.
+        /// Update <see cref="Article"/>s that are in the database.
+        /// </summary>
+        /// <param name="peopleList">List of <see cref="Article"/> to add or update.</param>
+        Task AddCsvData(IEnumerable<Article> peopleList);
     }
 }

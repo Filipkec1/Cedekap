@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 
 namespace Diplomski.Core.Requests
 {
@@ -24,5 +25,13 @@ namespace Diplomski.Core.Requests
     public class StoreUpdateRequest : StoreRequest
     {
         public Guid Id { get; set; }
+    }
+
+    /// <summary>
+    /// Defines csv file upload request.
+    /// </summary>
+    public class StoreCsvFileUploadRequest
+    {
+        public IFormFile CsvFile { get; set; }
     }
 }

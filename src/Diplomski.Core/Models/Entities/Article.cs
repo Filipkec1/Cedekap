@@ -15,6 +15,7 @@ namespace Diplomski.Core.Models.Entities
         public decimal Exit { get; set; }
         public decimal SingularPrice { get; set; }
         public decimal Owe { get; set; }
+        public decimal Demand { get; set; }
         public decimal Tariff { get; set; }
         public string Pla { get; set; }
         public decimal Op { get; set; }

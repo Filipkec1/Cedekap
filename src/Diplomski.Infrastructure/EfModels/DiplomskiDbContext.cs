@@ -48,6 +48,8 @@ namespace Diplomski.Infrastructure.EfModels
                     .HasMaxLength(25)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Demand).HasColumnType("decimal(20, 10)");
+
                 entity.Property(e => e.Entry).HasColumnType("decimal(20, 10)");
 
                 entity.Property(e => e.Exit).HasColumnType("decimal(20, 10)");
@@ -88,6 +90,11 @@ namespace Diplomski.Infrastructure.EfModels
                 entity.ToTable("Store", "Stores");
 
                 entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
             });
 
             OnModelCreatingPartial(modelBuilder);
