@@ -1,5 +1,4 @@
 ﻿using FluentValidation.AspNetCore;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Diplomski.API.Extensions
 {
@@ -16,7 +15,7 @@ namespace Diplomski.API.Extensions
             services.AddControllers()
                 .AddFluentValidation(s =>
                 {
-                    s.RegisterValidatorsFromAssemblyContaining<Startup>();
+                    s.RegisterValidatorsFromAssemblyContaining<Program>();
                 });
 
             return services;

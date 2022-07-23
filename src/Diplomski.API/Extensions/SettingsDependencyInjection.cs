@@ -1,8 +1,5 @@
 ﻿using Diplomski.Core.Constants;
 using Diplomski.Core.Settings;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace Diplomski.API.Extensions
 {
