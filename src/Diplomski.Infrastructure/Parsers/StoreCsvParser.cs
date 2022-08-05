@@ -25,7 +25,7 @@ namespace Diplomski.Infrastructure.Parsers
         /// Read the loaded csv file memory stream.
         /// </summary>
         /// <returns>A list of <see cref="Article"/>s from the csv file.</returns>
-        public List<Article> Read()
+        public List<Article> Read(Guid storeId)
         {
             List<Article> articleList = new List<Article>();
 
@@ -42,34 +42,52 @@ namespace Diplomski.Infrastructure.Parsers
                     while (csv.Read())
                     {
                         Article newArticle = new Article();
-                        try
-                        {
-                            newArticle.CodeDob = csv.GetField<string>(2);
-                            newArticle.Code = csv.GetField<string>(3);
-                            newArticle.Name = csv.GetField<string>(4);
-                            newArticle.Entry = csv.GetField<decimal>(5);
-                            newArticle.Exit = csv.GetField<decimal>(6);
-                            newArticle.SingularPrice = csv.GetField<decimal>(7);
-                            newArticle.Owe = csv.GetField<decimal>(8);
-                            newArticle.Demand = csv.GetField<decimal>(9);
-                            newArticle.Tariff = csv.GetField<decimal>(10);
-                            newArticle.Pla = csv.GetField<string>(11);
-                            newArticle.Op = csv.GetField<decimal>(12);
-                            newArticle.Rebate = csv.GetField<decimal>(13);
-                            newArticle.BuyPrice = csv.GetField<decimal>(15);
-                            newArticle.Tax = csv.GetField<decimal>(16);
-                        }
-                        catch (Exception E)
-                        {
 
-                        }
-
+                        newArticle.CodeDob = csv.GetField<string>(2);
+                        newArticle.Code = csv.GetField<string>(3);
+                        newArticle.Name = FixName(csv.GetField<string>(4));
+                        newArticle.Entry = Convert.ToDecimal(csv.GetField<string>(5));
+                        newArticle.Exit = Convert.ToDecimal(csv.GetField<string>(6));
+                        newArticle.SingularPrice = Convert.ToDecimal(csv.GetField<string>(7));
+                        newArticle.Owe = Convert.ToDecimal(csv.GetField<string>(8));
+                        newArticle.Demand = Convert.ToDecimal(csv.GetField<string>(9));
+                        newArticle.Tariff = Convert.ToDecimal(csv.GetField<string>(10));
+                        newArticle.Pla = csv.GetField<string>(11);
+                        newArticle.Op = Convert.ToDecimal(csv.GetField<string>(12));
+                        newArticle.Rebate = Convert.ToDecimal(csv.GetField<string>(13));
+                        newArticle.BuyPrice = Convert.ToDecimal(csv.GetField<string>(15));
+                        newArticle.Tax = Convert.ToDecimal(csv.GetField<string>(16));
+                        newArticle.StoreId = storeId;
                         articleList.Add(newArticle);
                     }
                 }
 
                 return articleList;
             }
+        }
+
+        /// <summary>
+        /// Replace non alphabetic characters with croatina characters in <see cref="Article.Name"/>.
+        /// </summary>
+        /// <param name="name">Name of article.</param>
+        /// <returns>A string with croatina characters.</returns>
+        private string FixName(string name)
+        {
+            var specialCharacters = new (string specialChar, string croatianChar)[]
+            {
+                ("[", "Š"),
+                (@"\", "Đ"),
+                ("^", "Č"),
+                ("]", "Ć"),
+                ("@", "Ž")
+            };
+
+            foreach (var set in specialCharacters)
+            {
+                name = name.Replace(set.specialChar, set.croatianChar);
+            }
+
+            return name;
         }
     }
 }

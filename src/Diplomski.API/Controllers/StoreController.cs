@@ -1,16 +1,12 @@
 ﻿using Diplomski.Core.Models.Entities;
 using Diplomski.Core.Requests;
+using Diplomski.Core.Results;
 using Diplomski.Core.Services;
 using Diplomski.Infrastructure.Parsers;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
 
 namespace Diplomski.API.Controllers
 {
-
     /// <summary>
     /// Defines person api controller.
     /// </summary>
@@ -30,6 +26,19 @@ namespace Diplomski.API.Controllers
         }
 
         /// <summary>
+        /// Get <see cref="Store"/> by id
+        /// </summary>
+        /// <param name="id">User id in database</param>
+        /// <returns>Store <see cref="StoreResult"/></returns>
+        [HttpGet]
+        [Route("{id}")]
+        [Produces(typeof(StoreResult))]
+        public async Task<IActionResult> Get([FromRoute] Guid id)
+        {
+
+        }
+
+        /// <summary>
         /// Read selected csv file and convert the data to objects that are saved to the database.
         /// </summary>
         /// <param name="request">Class that contains an <see cref="IFormFile"/> for the text file.</param>
@@ -42,12 +51,11 @@ namespace Diplomski.API.Controllers
             MemoryStream memoryStream = IFormFileToMemoryStream(request.CsvFile);
             StoreCsvParser csvParser = new StoreCsvParser(memoryStream);
 
-            List<Article> textData = csvParser.Read();
+            List<Article> textData = csvParser.Read(request.StoreId);
             await storeService.AddCsvData(textData);
 
             return Created(request.CsvFile.FileName, null);
         }
-
 
         /// <summary>
         /// Creates new <see cref="MemoryStream"/> from <see cref="IFormFile"/>.

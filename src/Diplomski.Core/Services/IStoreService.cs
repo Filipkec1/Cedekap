@@ -12,14 +12,6 @@ namespace Diplomski.Core.Services
     /// </summary>
     public interface IStoreService
     {
-
-
-        /// <summary>
-        /// Gets all people.
-        /// </summary>
-        /// <returns>List of <see cref="StoreResult"/></returns>
-        Task<IEnumerable<StoreResult>> GetAll();
-
         /// <summary>
         /// Gets Store entity by id.
         /// </summary>

@@ -9,6 +9,8 @@ namespace Diplomski.Core.Results
     public class StoreResult
     {
         public Guid Id { get; set; }
+        public string Name { get; set; }
+
 
         /// <summary>
         /// Initializes a new instance of <see cref="StoreResult"/>.
@@ -17,6 +19,7 @@ namespace Diplomski.Core.Results
         public StoreResult(Store store)
         {
             Id = store.Id;
+            Name = store.Name; 
         }
     }
 }

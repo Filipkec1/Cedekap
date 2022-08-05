@@ -8,7 +8,7 @@ namespace Diplomski.Core.Requests
     /// </summary>
     public class StoreRequest
     {
-
+        public string Name { get; set; }
     }
 
     /// <summary>
@@ -33,5 +33,6 @@ namespace Diplomski.Core.Requests
     public class StoreCsvFileUploadRequest
     {
         public IFormFile CsvFile { get; set; }
+        public Guid StoreId { get; set; }
     }
 }

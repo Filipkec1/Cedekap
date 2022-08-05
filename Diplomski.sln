@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diplomski.Core", "src\Diplo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diplomski.Infrastructure", "src\Diplomski.Infrastructure\Diplomski.Infrastructure.csproj", "{8115CFAA-03DA-4F64-B0DB-FA978643F825}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diplomski.API", "src\Diplomski.API\Diplomski.API.csproj", "{317099BF-A0BF-487B-A1DB-4274768AE9EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diplomski.API", "src\Diplomski.API\Diplomski.API.csproj", "{317099BF-A0BF-487B-A1DB-4274768AE9EE}"
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Diplomski.Front", "src\Diplomski.Front\Diplomski.Front.esproj", "{4955359A-7751-4684-B38B-0F8AFEE39EE8}"
 EndProject

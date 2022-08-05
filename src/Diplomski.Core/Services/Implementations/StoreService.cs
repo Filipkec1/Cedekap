@@ -1,4 +1,5 @@
-﻿using Diplomski.Core.Models.Entities;
+﻿using Diplomski.Core.Exceptions;
+using Diplomski.Core.Models.Entities;
 using Diplomski.Core.Requests;
 using Diplomski.Core.Results;
 using Diplomski.Core.UnitsOfWork;
@@ -26,29 +27,56 @@ namespace Diplomski.Core.Services.Implementations
             throw new NotImplementedException();
         }
 
-        public Task<StoreResult> Create(StoreCreateRequest request)
+        /// <inheritdoc />
+        public async Task<StoreResult> Create(StoreCreateRequest request)
         {
-            throw new NotImplementedException();
+            Store newStore = new Store()
+            {
+                Name = request.Name
+            };
+
+            await unitOfWork.Store.Add(newStore);
+            await unitOfWork.Commit();
+
+            return new StoreResult(newStore);
         }
 
-        public Task Delete(Guid id)
+        /// <inheritdoc />
+        public async Task Delete(Guid id)
         {
-            throw new NotImplementedException();
+            Store store = await unitOfWork.Store.GetById(id);
+            if(store is null)
+            {
+                throw new EntityNotFoundException(typeof(Store), id);
+            }
+
+            unitOfWork.Store.Delete(store);
+            await unitOfWork.Commit();
         }
 
-        public Task<IEnumerable<StoreResult>> GetAll()
+        /// <inheritdoc />
+        public async Task<StoreResult> GetById(Guid id)
         {
-            throw new NotImplementedException();
+            Store store = await unitOfWork.Store.GetById(id);
+            if (store is null)
+            {
+                throw new EntityNotFoundException(typeof(Store), id);
+            }
+
+            return new StoreResult(store);
         }
 
-        public Task<StoreResult> GetById(Guid id)
+        /// <inheritdoc />
+        public async Task Update(StoreUpdateRequest request)
         {
-            throw new NotImplementedException();
-        }
+            Store store = await unitOfWork.Store.GetById(request.Id);
+            if (store is null)
+            {
+                throw new EntityNotFoundException(typeof(Store), request.Id);
+            }
 
-        public Task Update(StoreUpdateRequest request)
-        {
-            throw new NotImplementedException();
+            unitOfWork.Store.Update(store);
+            await unitOfWork.Commit();
         }
     }
 }
