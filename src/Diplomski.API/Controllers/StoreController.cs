@@ -49,7 +49,7 @@ namespace Diplomski.API.Controllers
         public async Task<IActionResult> UploadTextFile([FromForm] StoreCsvFileUploadRequest request)
         {
             MemoryStream memoryStream = IFormFileToMemoryStream(request.CsvFile);
-            StoreCsvParser csvParser = new StoreCsvParser(memoryStream);
+            StoreDbfParser csvParser = new StoreDbfParser(memoryStream);
 
             List<Article> textData = csvParser.Read(request.StoreId);
             await storeService.AddCsvData(textData);
