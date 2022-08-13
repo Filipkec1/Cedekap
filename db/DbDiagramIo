@@ -22,7 +22,7 @@ table "Stores.Article" {
   Week date [not null]
   StoreId uniqueidentifier [not null]
   Indexes{
-    StoreId [name: "IXFK_Article_StoreId", unique]
+    StoreId [name: "IXFK_Article_StoreId"]
   }
 }
 

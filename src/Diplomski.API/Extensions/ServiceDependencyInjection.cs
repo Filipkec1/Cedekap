@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Diplomski.Core.Services;
+using Diplomski.Core.Services.Implementations;
+using Diplomski.Core.UnitsOfWork;
+using Diplomski.Infrastructure.EfUnitsOfWork;
 
 namespace Diplomski.API.Extensions
 {
@@ -11,7 +14,9 @@ namespace Diplomski.API.Extensions
         /// <returns></returns>
         public static IServiceCollection AddServicesToDependencyInjection(this IServiceCollection services)
         {
-            //services.AddScoped<IPersonService, PersonService>();
+            services.AddScoped<IStoreService, StoreService>();
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;
         }

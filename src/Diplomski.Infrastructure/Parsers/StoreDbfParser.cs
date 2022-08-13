@@ -2,8 +2,10 @@
 using Diplomski.Core.Models.Entities;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Text;
+using System.Threading;
 
 namespace Diplomski.Infrastructure.Parsers
 {
@@ -14,18 +16,21 @@ namespace Diplomski.Infrastructure.Parsers
         /// <summary>
         /// Initialize a new instance of <see cref="StoreDbfParser"/> class.
         /// </summary>
-        /// <param name="stream"><see cref="MemoryStream"/> of the csv file that is going to be parsed.</param>
+        /// <param name="stream"><see cref="MemoryStream"/> of the dbf file that is going to be parsed.</param>
         public StoreDbfParser(MemoryStream stream)
         {
             memoryStream = stream;
         }
 
         /// <summary>
-        /// Read the loaded csv file memory stream.
+        /// Read the loaded dbf file memory stream.
         /// </summary>
-        /// <returns>A list of <see cref="Article"/>s from the csv file.</returns>
-        public List<Article> Read(Guid storeId)
+        /// <param name="storeId"><see cref="Store.Id"/> that belongs that is used for the new <see cref="Article"/>s.</param>
+        /// <param name="week">The week that these <see cref="Article"/>s belong to.</param>
+        /// <returns>A list of <see cref="Article"/>s from the dbf file.</returns>
+        public List<Article> Read(Guid storeId, DateTime week)
         {
+            DateTime firstDayOfWeek = FirstDayOfWeek(week);
             List<Article> articleList = new List<Article>();
 
             using (var dbfTable = new DbfTable(memoryStream, Encoding.UTF8))
@@ -50,6 +55,7 @@ namespace Diplomski.Infrastructure.Parsers
                     newArticle.Rebate = Convert.ToDecimal(dbfRecord.Values[13].ToString());
                     newArticle.BuyPrice = Convert.ToDecimal(dbfRecord.Values[15].ToString());
                     newArticle.Tax = Convert.ToDecimal(dbfRecord.Values[16].ToString());
+                    newArticle.Week = firstDayOfWeek;
                     newArticle.StoreId = storeId;
 
                     articleList.Add(newArticle);
@@ -81,6 +87,20 @@ namespace Diplomski.Infrastructure.Parsers
             }
 
             return name;
+        }
+
+        /// <summary>
+        /// Get the first day of a selected week.
+        /// </summary>
+        /// <param name="week">The week that the first day of it needs to be found.</param>
+        /// <returns><see cref="DateTime"/> of the first day in the week.</returns>
+        private DateTime FirstDayOfWeek(DateTime week)
+        {
+            CultureInfo culture = Thread.CurrentThread.CurrentCulture;
+            int diff = week.DayOfWeek - culture.DateTimeFormat.FirstDayOfWeek;
+            if (diff < 0)
+                diff += 7;
+            return week.AddDays(-diff).Date;
         }
     }
 }

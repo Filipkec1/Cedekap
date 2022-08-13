@@ -3,6 +3,8 @@ using Diplomski.Core.Repositories;
 using Diplomski.Infrastructure.EfModels;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Diplomski.Infrastructure.EfRepository
@@ -19,6 +21,15 @@ namespace Diplomski.Infrastructure.EfRepository
         public ArticleRepository(DiplomskiDbContext context) : base(context)
         { }
 
+        /// <inheritdoc />
+        public async Task<IEnumerable<Article>> GetAllWeekAndStore(Guid storeId, DateTime week)
+        {
+            return await GetTableQueryable()
+                        .Where(a => a.StoreId == storeId && a.Week == week)
+                        .ToListAsync();
+        }
+
+        /// <inheritdoc />
         public async override Task<Article> GetById(Guid id)
         {
             return await GetTableQueryable().FirstOrDefaultAsync(e => e.Id == id);

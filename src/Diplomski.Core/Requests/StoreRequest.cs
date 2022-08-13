@@ -28,11 +28,12 @@ namespace Diplomski.Core.Requests
     }
 
     /// <summary>
-    /// Defines csv file upload request.
+    /// Defines dbf file upload request.
     /// </summary>
-    public class StoreCsvFileUploadRequest
+    public class StoreDbfFileUploadRequest
     {
-        public IFormFile CsvFile { get; set; }
+        public IFormFile DbfFile { get; set; }
         public Guid StoreId { get; set; }
+        public DateTime DbfWeek { get; set; }
     }
 }

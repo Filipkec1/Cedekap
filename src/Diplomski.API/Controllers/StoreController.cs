@@ -26,37 +26,21 @@ namespace Diplomski.API.Controllers
         }
 
         /// <summary>
-        /// Get <see cref="Store"/> by id
+        /// Read selected dbf file and convert the data to objects that are saved to the database.
         /// </summary>
-        /// <param name="id">User id in database</param>
-        /// <returns>Store <see cref="StoreResult"/></returns>
-        [HttpGet]
-        [Route("{id}")]
-        [Produces(typeof(StoreResult))]
-        public async Task<IActionResult> Get([FromRoute] Guid id)
-        {
-
-        }
-
-        /// <summary>
-        /// Read selected csv file and convert the data to objects that are saved to the database.
-        /// </summary>
-        /// <param name="request">Class that contains an <see cref="IFormFile"/> for the text file.</param>
-        /// <returns><see cref="CreatedResult"/></returns>
+        /// <param name="request">Class that contains an <see cref="IFormFile"/> for the dbf file.</param>
         [HttpPost]
         [Route("Upload")]
-        [Produces(typeof(CreatedResult))]
-        public async Task<IActionResult> UploadDbfFile([FromForm] StoreCsvFileUploadRequest request)
+        public async Task<IActionResult> UploadDbfFile([FromForm] StoreDbfFileUploadRequest request)
         {
-            MemoryStream memoryStream = IFormFileToMemoryStream(request.CsvFile);
-            StoreDbfParser csvParser = new StoreDbfParser(memoryStream);
+            MemoryStream memoryStream = IFormFileToMemoryStream(request.DbfFile);
+            StoreDbfParser dbfParser = new StoreDbfParser(memoryStream);
 
-            List<Article> textData = csvParser.Read(request.StoreId);
-            await storeService.AddCsvData(textData);
+            List<Article> textData = dbfParser.Read(request.StoreId, request.DbfWeek);
+            await storeService.AddDbfData(request.StoreId, request.DbfWeek, textData);
 
-            return Created(request.CsvFile.FileName, null);
+            return Ok($"File {request.DbfFile.FileName} parsed and uploaded.");
         }
-
 
         /// <summary>
         /// Creates new <see cref="MemoryStream"/> from <see cref="IFormFile"/>.

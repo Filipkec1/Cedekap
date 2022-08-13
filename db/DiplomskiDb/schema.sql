@@ -50,7 +50,7 @@ GO
 
 /* Create Primary Keys, Indexes, Uniques, Checks */
 /* Stores */
-CREATE UNIQUE INDEX [IXFK_Article_StoreId] ON [Stores].[Article] ("StoreId")
+CREATE INDEX [IXFK_Article_StoreId] ON [Stores].[Article] ("StoreId")
 GO
 
 /* Create Foreign Key Constraints */
