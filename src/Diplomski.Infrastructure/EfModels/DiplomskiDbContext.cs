@@ -31,16 +31,15 @@ namespace Diplomski.Infrastructure.EfModels
             {
                 entity.ToTable("Article", "Stores");
 
-                entity.HasIndex(e => e.StoreId, "IXFK_Article_StoreId")
-                    .IsUnique();
+                entity.HasIndex(e => e.StoreId, "IXFK_Article_StoreId");
 
                 entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
 
-                entity.Property(e => e.BuyPrice).HasColumnType("decimal(20, 10)");
+                entity.Property(e => e.BuyPrice).HasColumnType("decimal(10, 2)");
 
                 entity.Property(e => e.Code)
                     .IsRequired()
-                    .HasMaxLength(250)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.CodeDob)
@@ -48,42 +47,40 @@ namespace Diplomski.Infrastructure.EfModels
                     .HasMaxLength(25)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Demand).HasColumnType("decimal(20, 10)");
+                entity.Property(e => e.Demand).HasColumnType("decimal(10, 2)");
 
-                entity.Property(e => e.Entry).HasColumnType("decimal(20, 10)");
+                entity.Property(e => e.Entry).HasColumnType("decimal(10, 2)");
 
-                entity.Property(e => e.Exit).HasColumnType("decimal(20, 10)");
+                entity.Property(e => e.Exit).HasColumnType("decimal(10, 2)");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
-                    .HasMaxLength(250)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Op)
-                    .HasColumnType("decimal(20, 10)")
-                    .HasColumnName("OP");
+                entity.Property(e => e.Op).HasColumnName("OP");
 
-                entity.Property(e => e.Owe).HasColumnType("decimal(20, 10)");
+                entity.Property(e => e.Owe).HasColumnType("decimal(10, 2)");
 
                 entity.Property(e => e.Pla)
                     .IsRequired()
-                    .HasMaxLength(100)
+                    .HasMaxLength(3)
                     .IsUnicode(false)
                     .HasColumnName("PLA");
 
-                entity.Property(e => e.Rebate).HasColumnType("decimal(20, 10)");
+                entity.Property(e => e.Rebate).HasColumnType("decimal(10, 2)");
 
-                entity.Property(e => e.SingularPrice).HasColumnType("decimal(20, 10)");
+                entity.Property(e => e.SingularPrice).HasColumnType("decimal(10, 2)");
 
-                entity.Property(e => e.Tariff).HasColumnType("decimal(20, 10)");
+                entity.Property(e => e.Tariff).HasColumnType("decimal(10, 2)");
 
-                entity.Property(e => e.Tax).HasColumnType("decimal(20, 10)");
+                entity.Property(e => e.Tax).HasColumnType("decimal(10, 2)");
 
                 entity.Property(e => e.Week).HasColumnType("date");
 
                 entity.HasOne(d => d.Store)
-                    .WithOne(p => p.Article)
-                    .HasForeignKey<Article>(d => d.StoreId)
+                    .WithMany(p => p.Article)
+                    .HasForeignKey(d => d.StoreId)
                     .HasConstraintName("IX_Article_ArticleId");
             });
 

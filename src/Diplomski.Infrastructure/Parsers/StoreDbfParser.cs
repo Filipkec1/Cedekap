@@ -51,7 +51,7 @@ namespace Diplomski.Infrastructure.Parsers
                     newArticle.Demand = Convert.ToDecimal(dbfRecord.Values[9].ToString());
                     newArticle.Tariff = Convert.ToDecimal(dbfRecord.Values[10].ToString());
                     newArticle.Pla = dbfRecord.Values[11].ToString();
-                    newArticle.Op = Convert.ToDecimal(dbfRecord.Values[12].ToString());
+                    newArticle.Op = Convert.ToInt32(dbfRecord.Values[12].ToString());
                     newArticle.Rebate = Convert.ToDecimal(dbfRecord.Values[13].ToString());
                     newArticle.BuyPrice = Convert.ToDecimal(dbfRecord.Values[15].ToString());
                     newArticle.Tax = Convert.ToDecimal(dbfRecord.Values[16].ToString());

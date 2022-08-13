@@ -18,7 +18,7 @@ namespace Diplomski.Core.Models.Entities
         public decimal Demand { get; set; }
         public decimal Tariff { get; set; }
         public string Pla { get; set; }
-        public decimal Op { get; set; }
+        public int Op { get; set; }
         public decimal Rebate { get; set; }
         public decimal BuyPrice { get; set; }
         public decimal Tax { get; set; }
