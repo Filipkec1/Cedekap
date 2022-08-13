@@ -19,6 +19,7 @@ table "Stores.Article" {
   Rebate decimal(20,10) [not null]
   BuyPrice decimal(20,10) [not null]
   Tax decimal(20,10) [not null]
+  Week date [not null]
   StoreId uniqueidentifier [not null]
   Indexes{
     StoreId [name: "IXFK_Article_StoreId", unique]

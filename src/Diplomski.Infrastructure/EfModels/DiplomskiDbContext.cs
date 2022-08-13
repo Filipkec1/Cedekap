@@ -79,6 +79,8 @@ namespace Diplomski.Infrastructure.EfModels
 
                 entity.Property(e => e.Tax).HasColumnType("decimal(20, 10)");
 
+                entity.Property(e => e.Week).HasColumnType("date");
+
                 entity.HasOne(d => d.Store)
                     .WithOne(p => p.Article)
                     .HasForeignKey<Article>(d => d.StoreId)

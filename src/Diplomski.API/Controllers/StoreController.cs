@@ -46,7 +46,7 @@ namespace Diplomski.API.Controllers
         [HttpPost]
         [Route("Upload")]
         [Produces(typeof(CreatedResult))]
-        public async Task<IActionResult> UploadTextFile([FromForm] StoreCsvFileUploadRequest request)
+        public async Task<IActionResult> UploadDbfFile([FromForm] StoreCsvFileUploadRequest request)
         {
             MemoryStream memoryStream = IFormFileToMemoryStream(request.CsvFile);
             StoreDbfParser csvParser = new StoreDbfParser(memoryStream);
@@ -56,6 +56,7 @@ namespace Diplomski.API.Controllers
 
             return Created(request.CsvFile.FileName, null);
         }
+
 
         /// <summary>
         /// Creates new <see cref="MemoryStream"/> from <see cref="IFormFile"/>.

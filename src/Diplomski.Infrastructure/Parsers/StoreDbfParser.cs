@@ -60,10 +60,10 @@ namespace Diplomski.Infrastructure.Parsers
         }
 
         /// <summary>
-        /// Replace non alphabetic characters with croatina characters in <see cref="Article.Name"/>.
+        /// Replace non alphabetic characters with croatian characters in <see cref="Article.Name"/>.
         /// </summary>
         /// <param name="name">Name of article.</param>
-        /// <returns>A string with croatina characters.</returns>
+        /// <returns>A string with croatian characters.</returns>
         private string FixName(string name)
         {
             var specialCharacters = new (string specialChar, string croatianChar)[]

@@ -22,6 +22,7 @@ namespace Diplomski.Core.Models.Entities
         public decimal Rebate { get; set; }
         public decimal BuyPrice { get; set; }
         public decimal Tax { get; set; }
+        public DateTime Week { get; set; }
         public Guid StoreId { get; set; }
 
         public virtual Store Store { get; set; }

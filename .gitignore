@@ -351,3 +351,6 @@ MigrationBackup/
 
 #Ignore appsettings.Development
 *appsettings.Development.json
+
+#Ignore backup files
+*.bak

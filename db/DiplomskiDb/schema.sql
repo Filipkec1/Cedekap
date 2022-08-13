@@ -43,6 +43,7 @@ CREATE TABLE [Stores].[Article] (
   [Rebate] decimal(20,10) NOT NULL,
   [BuyPrice] decimal(20,10) NOT NULL,
   [Tax] decimal(20,10) NOT NULL,
+  [Week] date NOT NULL,
   [StoreId] uniqueidentifier NOT NULL
 )
 GO
