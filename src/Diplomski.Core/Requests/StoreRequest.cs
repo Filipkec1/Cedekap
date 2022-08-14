@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
 
 namespace Diplomski.Core.Requests
 {
@@ -25,15 +24,5 @@ namespace Diplomski.Core.Requests
     public class StoreUpdateRequest : StoreRequest
     {
         public Guid Id { get; set; }
-    }
-
-    /// <summary>
-    /// Defines dbf file upload request.
-    /// </summary>
-    public class StoreDbfFileUploadRequest
-    {
-        public IFormFile DbfFile { get; set; }
-        public Guid StoreId { get; set; }
-        public DateTime DbfWeek { get; set; }
     }
 }

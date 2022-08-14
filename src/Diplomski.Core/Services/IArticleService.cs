@@ -1,4 +1,5 @@
-﻿using Diplomski.Core.Results;
+﻿using Diplomski.Core.Models.Entities;
+using Diplomski.Core.Results;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -11,10 +12,13 @@ namespace Diplomski.Core.Services
     public interface IArticleService
     {
         /// <summary>
-        /// Gets all people.
+        /// Create new <see cref="Article"/>s in the database for selected week.
+        /// If the week already has <see cref="Article"/>s remove them and create new ones.
         /// </summary>
-        /// <returns>List of <see cref="ArticleResult"/></returns>
-        Task<IEnumerable<ArticleResult>> GetAll();
+        /// <param name="storeId"><see cref="Store.Id"/> of the new <see cref="Article"/>s.</param>
+        /// <param name="week">Week of the new <see cref="Article"/>s.</param>
+        /// <param name="articleList">List of <see cref="Article"/> to add.</param>
+        Task AddDbfData(Guid storeId, DateTime week, IEnumerable<Article> articleList);
 
         /// <summary>
         /// Gets Article entity by id.

@@ -25,6 +25,7 @@ namespace Diplomski.Infrastructure.EfRepository
         public async Task<IEnumerable<Article>> GetAllWeekAndStore(Guid storeId, DateTime week)
         {
             return await GetTableQueryable()
+                        .AsNoTracking()
                         .Where(a => a.StoreId == storeId && a.Week == week)
                         .ToListAsync();
         }

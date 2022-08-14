@@ -2,24 +2,25 @@
 using Diplomski.Core.Models.Entities;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Text;
-using System.Threading;
 
 namespace Diplomski.Infrastructure.Parsers
 {
-    public class StoreDbfParser
+    public class ArticleDbfParser
     {
         private MemoryStream memoryStream;
+        private DateTime firstDayOfWeek;
 
         /// <summary>
-        /// Initialize a new instance of <see cref="StoreDbfParser"/> class.
+        /// Initialize a new instance of <see cref="ArticleDbfParser"/> class.
         /// </summary>
         /// <param name="stream"><see cref="MemoryStream"/> of the dbf file that is going to be parsed.</param>
-        public StoreDbfParser(MemoryStream stream)
+        /// <param name="week"><see cref="MemoryStream"/> of the dbf file that is going to be parsed.</param>
+        public ArticleDbfParser(MemoryStream stream, DateTime week)
         {
             memoryStream = stream;
+            firstDayOfWeek = week;
         }
 
         /// <summary>
@@ -30,7 +31,6 @@ namespace Diplomski.Infrastructure.Parsers
         /// <returns>A list of <see cref="Article"/>s from the dbf file.</returns>
         public List<Article> Read(Guid storeId, DateTime week)
         {
-            DateTime firstDayOfWeek = FirstDayOfWeek(week);
             List<Article> articleList = new List<Article>();
 
             using (var dbfTable = new DbfTable(memoryStream, Encoding.UTF8))
@@ -87,20 +87,6 @@ namespace Diplomski.Infrastructure.Parsers
             }
 
             return name;
-        }
-
-        /// <summary>
-        /// Get the first day of a selected week.
-        /// </summary>
-        /// <param name="week">The week that the first day of it needs to be found.</param>
-        /// <returns><see cref="DateTime"/> of the first day in the week.</returns>
-        private DateTime FirstDayOfWeek(DateTime week)
-        {
-            CultureInfo culture = Thread.CurrentThread.CurrentCulture;
-            int diff = week.DayOfWeek - culture.DateTimeFormat.FirstDayOfWeek;
-            if (diff < 0)
-                diff += 7;
-            return week.AddDays(-diff).Date;
         }
     }
 }

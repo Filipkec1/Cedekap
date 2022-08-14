@@ -15,6 +15,7 @@ namespace Diplomski.API.Extensions
         public static IServiceCollection AddServicesToDependencyInjection(this IServiceCollection services)
         {
             services.AddScoped<IStoreService, StoreService>();
+            services.AddScoped<IArticleService, ArticleService>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 

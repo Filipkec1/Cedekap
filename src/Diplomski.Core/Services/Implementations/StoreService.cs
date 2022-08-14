@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Diplomski.Core.Services.Implementations
 {
     /// <summary>
-    /// Defines item service.
+    /// Defines <see cref="Store"/> service.
     /// </summary>
     public class StoreService : ServiceBase, IStoreService
     {
@@ -21,21 +21,6 @@ namespace Diplomski.Core.Services.Implementations
         /// <param name="unitOfWork">Unit of work.</param>
         public StoreService(IUnitOfWork unitOfWork) : base(unitOfWork)
         { }
-
-        /// <inheritdoc />
-        public async Task AddDbfData(Guid storeId, DateTime week, IEnumerable<Article> articleList)
-        {
-            IEnumerable<Article> articleToDelete = await unitOfWork.Article.GetAllWeekAndStore(storeId, week);
-
-            if (articleToDelete.Any())
-            {
-                unitOfWork.Article.DeleteRange(articleToDelete);
-                await unitOfWork.Commit();
-            }
-
-            await unitOfWork.Article.AddRange(articleList);
-            await unitOfWork.Commit();
-        }
 
         /// <inheritdoc />
         public async Task<StoreResult> Create(StoreCreateRequest request)
