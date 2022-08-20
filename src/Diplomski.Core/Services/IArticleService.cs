@@ -1,4 +1,5 @@
 ﻿using Diplomski.Core.Models.Entities;
+using Diplomski.Core.Requests;
 using Diplomski.Core.Results;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,13 @@ namespace Diplomski.Core.Services
         /// <param name="month">Month of the new <see cref="Article"/>s.</param>
         /// <param name="articleList">List of <see cref="Article"/> to add.</param>
         Task AddDbfData(Guid storeId, DateTime month, IEnumerable<Article> articleList);
+
+        /// <summary>
+        /// Filter all <see cref="Article"/>s from database using <paramref name="request"/>.
+        /// </summary>
+        /// <param name="request">Parameters by with <see cref="Article"/>s are filtered.</param>
+        /// <returns>A list of filtered <see cref="ArticleResult"/>s.</returns>
+        Task<IEnumerable<ArticleResult>> FilterArticle(ArticleFilterRequest request);
 
         /// <summary>
         /// Gets Article entity by id.

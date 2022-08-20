@@ -1,4 +1,5 @@
 using Diplomski.API.Extensions;
+using Diplomski.API.Middlewares;
 using Diplomski.Core.Constants;
 using Diplomski.Core.Settings;
 using Diplomski.Infrastructure.EfModels;
@@ -28,6 +29,10 @@ namespace Diplomski.API
                 maker.EnableSensitiveDataLogging(false);
             });
 
+            builder.Services.AddMvc(options =>
+            {
+                options.InputFormatters.Insert(0, new RawJsonBodyInputFormatterMiddleware());
+            });
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

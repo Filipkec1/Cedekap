@@ -1,5 +1,6 @@
 ﻿using Diplomski.Core.Models.Entities;
 using Diplomski.Core.Repositories;
+using Diplomski.Core.Requests;
 using Diplomski.Infrastructure.EfModels;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -20,6 +21,11 @@ namespace Diplomski.Infrastructure.EfRepository
         /// <param name="context">Diplomski planning context.</param>
         public ArticleRepository(DiplomskiDbContext context) : base(context)
         { }
+
+        public Task<IEnumerable<Article>> FilterArticle(ArticleFilterRequest request)
+        {
+            throw new NotImplementedException();
+        }
 
         /// <inheritdoc />
         public async Task<IEnumerable<Article>> GetAllStoreAndMonth(Guid storeId, DateTime month)

@@ -1,4 +1,6 @@
-﻿using Diplomski.Core.Models.Entities;
+﻿using Diplomski.Core.Exceptions;
+using Diplomski.Core.Models.Entities;
+using Diplomski.Core.Requests;
 using Diplomski.Core.Results;
 using Diplomski.Core.UnitsOfWork;
 using System;
@@ -36,9 +38,21 @@ namespace Diplomski.Core.Services.Implementations
         }
 
         /// <inheritdoc />
-        public Task<ArticleResult> GetById(Guid id)
+        public Task<IEnumerable<ArticleResult>> FilterArticle(ArticleFilterRequest request)
         {
             throw new NotImplementedException();
+        }
+
+        /// <inheritdoc />
+        public async Task<ArticleResult> GetById(Guid id)
+        {
+            Article article = await unitOfWork.Article.GetById(id);
+            if (article is null)
+            {
+                throw new EntityNotFoundException(typeof(Article), id);
+            }
+
+            return new ArticleResult(article);
         }
     }
 }

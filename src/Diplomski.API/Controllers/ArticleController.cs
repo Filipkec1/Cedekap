@@ -3,6 +3,9 @@ using Diplomski.Core.Services;
 using Diplomski.Infrastructure.Parsers;
 using Microsoft.AspNetCore.Mvc;
 using Diplomski.Core.Requests;
+using Diplomski.Core.Results;
+using Newtonsoft.Json;
+using Diplomski.Core.Exceptions;
 
 namespace Diplomski.API.Controllers
 {
@@ -23,6 +26,31 @@ namespace Diplomski.API.Controllers
         {
             articleService = service;
         }
+
+        /// <summary>
+        /// Filter all <see cref="Article"/>s from database using <paramref name="request"/>.
+        /// </summary>
+        /// <param name="value">Parameters by with <see cref="Article"/>s are filtered.</param>
+        /// <returns>A list of filtered <see cref="Article"/>s.</returns>
+        [HttpPost]
+        [Route("Filter")]
+        [Produces(typeof(IEnumerable<ArticleResult>))]
+        public async Task<IActionResult> FilterArticle([FromBody] string value)
+        {
+            ArticleFilterRequest? request = JsonConvert.DeserializeObject<ArticleFilterRequest>(value);
+
+            if (request is null)
+            {
+                throw new BadRequestException("No filter was defind!");
+            }
+
+
+
+
+
+            return null;
+        }
+
 
         /// <summary>
         /// Read selected dbf file and convert the data to objects that are saved to the database.
@@ -65,6 +93,14 @@ namespace Diplomski.API.Controllers
         private DateTime FirstDayOfMonth(DateTime month)
         {
             return new DateTime(month.Year, month.Month, 1);
+        }
+
+        public class Account
+        {
+            public string Email { get; set; }
+            public bool Active { get; set; }
+            public DateTime CreatedDate { get; set; }
+            public IList<string> Roles { get; set; }
         }
     }
 }
