@@ -8,21 +8,18 @@ namespace Diplomski.Core.Models.Entities
     public partial class Article
     {
         public Guid Id { get; set; }
-        public string CodeDob { get; set; }
+        public string CodeSupplier { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
-        public decimal Entry { get; set; }
         public decimal Exit { get; set; }
-        public decimal SingularPrice { get; set; }
-        public decimal Owe { get; set; }
+        public decimal Price { get; set; }
         public decimal Demand { get; set; }
-        public decimal Tariff { get; set; }
-        public string Pla { get; set; }
-        public int Op { get; set; }
+        public double Tariff { get; set; }
+        public string Pay { get; set; }
+        public int Operator { get; set; }
         public decimal Rebate { get; set; }
         public decimal BuyPrice { get; set; }
-        public decimal Tax { get; set; }
-        public DateTime Week { get; set; }
+        public DateTime Month { get; set; }
         public Guid StoreId { get; set; }
 
         public virtual Store Store { get; set; }

@@ -29,21 +29,18 @@ GO
 
 CREATE TABLE [Stores].[Article] (
   [Id] uniqueidentifier PRIMARY KEY DEFAULT (NEWID()),
-  [CodeDob] varchar(25) NOT NULL,
+  [CodeSupplier] varchar(25) NOT NULL,
   [Code] varchar(50) NOT NULL,
   [Name] varchar(50) NOT NULL,
-  [Entry] decimal(10,2) NOT NULL,
   [Exit] decimal(10,2) NOT NULL,
-  [SingularPrice] decimal(10,2) NOT NULL,
-  [Owe] decimal(10,2) NOT NULL,
+  [Price] decimal(10,2) NOT NULL,
   [Demand] decimal(10,2) NOT NULL,
-  [Tariff] decimal(10,2) NOT NULL,
-  [PLA] varchar(3) NOT NULL,
-  [OP] int NOT NULL,
+  [Tariff] float NOT NULL,
+  [Pay] varchar(3) NOT NULL,
+  [Operator] int NOT NULL,
   [Rebate] decimal(10,2) NOT NULL,
   [BuyPrice] decimal(10,2) NOT NULL,
-  [Tax] decimal(10,2) NOT NULL,
-  [Week] date NOT NULL,
+  [Month] date NOT NULL,
   [StoreId] uniqueidentifier NOT NULL
 )
 GO

@@ -1,6 +1,6 @@
 ﻿namespace Diplomski.Core.Models.Enums
 {
-    public enum PlaEnum
+    public enum PayEnum
     {
         CEK,
         GOT,

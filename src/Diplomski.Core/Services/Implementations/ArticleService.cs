@@ -21,9 +21,9 @@ namespace Diplomski.Core.Services.Implementations
         { }
 
         /// <inheritdoc />
-        public async Task AddDbfData(Guid storeId, DateTime week, IEnumerable<Article> articleList)
+        public async Task AddDbfData(Guid storeId, DateTime month, IEnumerable<Article> articleList)
         {
-            IEnumerable<Article> articleToDelete = await unitOfWork.Article.GetAllWeekAndStore(storeId, week);
+            IEnumerable<Article> articleToDelete = await unitOfWork.Article.GetAllStoreAndMonth(storeId, month);
 
             if (articleToDelete.Any())
             {

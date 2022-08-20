@@ -2,8 +2,7 @@
 using Diplomski.Core.Services;
 using Diplomski.Infrastructure.Parsers;
 using Microsoft.AspNetCore.Mvc;
-using System.Globalization;
-using static Diplomski.Core.Requests.ArticleRequest;
+using Diplomski.Core.Requests;
 
 namespace Diplomski.API.Controllers
 {
@@ -34,12 +33,12 @@ namespace Diplomski.API.Controllers
         public async Task<IActionResult> UploadDbfFile([FromForm] ArticleDbfFileUploadRequest request)
         {
             MemoryStream memoryStream = IFormFileToMemoryStream(request.DbfFile);
-            DateTime firstDayOfWeek = FirstDayOfWeek(request.DbfWeek);
+            DateTime firstDayOfMonth = FirstDayOfMonth(request.DbfMonth);
 
-            ArticleDbfParser dbfParser = new ArticleDbfParser(memoryStream, firstDayOfWeek);
+            ArticleDbfParser dbfParser = new ArticleDbfParser(memoryStream, firstDayOfMonth);
 
-            List<Article> textData = dbfParser.Read(request.StoreId, FirstDayOfWeek(request.DbfWeek));
-            await articleService.AddDbfData(request.StoreId, firstDayOfWeek, textData);
+            List<Article> textData = dbfParser.Read(request.StoreId);
+            await articleService.AddDbfData(request.StoreId, firstDayOfMonth, textData);
 
             return Ok($"File {request.DbfFile.FileName} parsed and uploaded.");
         }
@@ -59,17 +58,13 @@ namespace Diplomski.API.Controllers
         }
 
         /// <summary>
-        /// Get the first day of a selected week.
+        /// Get the first day of a selected month.
         /// </summary>
-        /// <param name="week">The week that the first day of it needs to be found.</param>
-        /// <returns><see cref="DateTime"/> of the first day in the week.</returns>
-        private DateTime FirstDayOfWeek(DateTime week)
+        /// <param name="month">The month that the first day of it needs to be found.</param>
+        /// <returns><see cref="DateTime"/> of the first day in the month.</returns>
+        private DateTime FirstDayOfMonth(DateTime month)
         {
-            CultureInfo culture = Thread.CurrentThread.CurrentCulture;
-            int diff = week.DayOfWeek - culture.DateTimeFormat.FirstDayOfWeek;
-            if (diff < 0)
-                diff += 7;
-            return week.AddDays(-diff).Date;
+            return new DateTime(month.Year, month.Month, 1);
         }
     }
 }

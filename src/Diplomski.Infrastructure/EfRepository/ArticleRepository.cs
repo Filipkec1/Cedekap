@@ -22,11 +22,11 @@ namespace Diplomski.Infrastructure.EfRepository
         { }
 
         /// <inheritdoc />
-        public async Task<IEnumerable<Article>> GetAllWeekAndStore(Guid storeId, DateTime week)
+        public async Task<IEnumerable<Article>> GetAllStoreAndMonth(Guid storeId, DateTime month)
         {
             return await GetTableQueryable()
                         .AsNoTracking()
-                        .Where(a => a.StoreId == storeId && a.Week == week)
+                        .Where(a => a.StoreId == storeId && a.Month == month)
                         .ToListAsync();
         }
 

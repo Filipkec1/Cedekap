@@ -4,18 +4,12 @@ using System;
 namespace Diplomski.Core.Requests
 {
     /// <summary>
-    /// Defines article request.
+    /// Defines dbf file upload request.
     /// </summary>
-    public class ArticleRequest
+    public class ArticleDbfFileUploadRequest
     {
-        /// <summary>
-        /// Defines dbf file upload request.
-        /// </summary>
-        public class ArticleDbfFileUploadRequest
-        {
-            public IFormFile DbfFile { get; set; }
-            public Guid StoreId { get; set; }
-            public DateTime DbfWeek { get; set; }
-        }
+        public IFormFile DbfFile { get; set; }
+        public Guid StoreId { get; set; }
+        public DateTime DbfMonth { get; set; }
     }
 }
