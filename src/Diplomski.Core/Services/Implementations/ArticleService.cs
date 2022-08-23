@@ -38,9 +38,10 @@ namespace Diplomski.Core.Services.Implementations
         }
 
         /// <inheritdoc />
-        public Task<IEnumerable<ArticleResult>> FilterArticle(ArticleFilterRequest request)
+        public async Task<IEnumerable<ArticleResult>> FilterArticle(ArticleFilterRequest request)
         {
-            throw new NotImplementedException();
+            IEnumerable<Article> articleList = await unitOfWork.Article.FilterArticle(request);
+            return articleList.Select(a => new ArticleResult(a));
         }
 
         /// <inheritdoc />

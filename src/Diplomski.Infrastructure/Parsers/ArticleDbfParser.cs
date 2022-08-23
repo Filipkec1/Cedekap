@@ -3,6 +3,7 @@ using Diplomski.Core.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace Diplomski.Infrastructure.Parsers
@@ -40,7 +41,13 @@ namespace Diplomski.Infrastructure.Parsers
                 {
                     Article newArticle = new Article();
 
-                    newArticle.CodeSupplier = dbfRecord.Values[2].ToString();
+                    string codeSupplier = dbfRecord.Values[2].ToString();
+                    if (!codeSupplier.All(char.IsDigit))
+                    {
+                        continue;
+                    }
+
+                    newArticle.CodeSupplier = codeSupplier;
                     newArticle.Code = dbfRecord.Values[3].ToString();
                     newArticle.Name = FixName(dbfRecord.Values[4].ToString());
                     newArticle.Exit = Convert.ToDecimal(dbfRecord.Values[6].ToString());

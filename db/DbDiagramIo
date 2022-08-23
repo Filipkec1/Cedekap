@@ -7,7 +7,7 @@ table "Stores.Article" {
   Id uniqueidentifier [pk, default: `NEWID()`]
   CodeSupplier varchar(25) [not null]
   Code varchar(50) [not null]
-  Name varchar(50) [not null]
+  Name nvarchar(50) [not null]
   Exit decimal(10,2) [not null]
   Price decimal(10,2) [not null]
   Demand decimal(10,2) [not null]

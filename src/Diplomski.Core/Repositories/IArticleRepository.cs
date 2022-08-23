@@ -14,7 +14,7 @@ namespace Diplomski.Core.Repositories
         /// <summary>
         /// Filter all <see cref="Article"/>s from database using <paramref name="request"/>.
         /// </summary>
-        /// <param name="value">Parameters by with <see cref="Article"/>s are filtered.</param>
+        /// <param name="request">Parameters by with <see cref="Article"/>s are filtered.</param>
         /// <returns>A list of filtered <see cref="Article"/>s.</returns>
         Task<IEnumerable<Article>> FilterArticle(ArticleFilterRequest request);
 

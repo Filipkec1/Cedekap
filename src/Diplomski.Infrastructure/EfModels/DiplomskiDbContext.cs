@@ -52,8 +52,7 @@ namespace Diplomski.Infrastructure.EfModels
 
                 entity.Property(e => e.Name)
                     .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.Pay)
                     .IsRequired()

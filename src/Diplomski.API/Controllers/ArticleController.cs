@@ -35,22 +35,11 @@ namespace Diplomski.API.Controllers
         [HttpPost]
         [Route("Filter")]
         [Produces(typeof(IEnumerable<ArticleResult>))]
-        public async Task<IActionResult> FilterArticle([FromBody] string value)
+        public async Task<IActionResult> FilterArticle([FromBody] ArticleFilterRequest request)
         {
-            ArticleFilterRequest? request = JsonConvert.DeserializeObject<ArticleFilterRequest>(value);
-
-            if (request is null)
-            {
-                throw new BadRequestException("No filter was defind!");
-            }
-
-
-
-
-
-            return null;
+            IEnumerable<ArticleResult> articleList = await articleService.FilterArticle(request);
+            return Ok(articleList);
         }
-
 
         /// <summary>
         /// Read selected dbf file and convert the data to objects that are saved to the database.
@@ -93,14 +82,6 @@ namespace Diplomski.API.Controllers
         private DateTime FirstDayOfMonth(DateTime month)
         {
             return new DateTime(month.Year, month.Month, 1);
-        }
-
-        public class Account
-        {
-            public string Email { get; set; }
-            public bool Active { get; set; }
-            public DateTime CreatedDate { get; set; }
-            public IList<string> Roles { get; set; }
         }
     }
 }

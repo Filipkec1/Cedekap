@@ -22,7 +22,7 @@
          "ObjectType": 0
       }
    ],
-   "UiHint": "desktop-ovmf1gn\\mssqlserver02.DiplomskiDb.dbo",
+   "UiHint": "DESKTOP-LG8196C.DiplomskiDb",
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": false,
    "UseDbContextSplitting": false,

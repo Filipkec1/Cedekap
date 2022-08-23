@@ -2,6 +2,7 @@
 using Diplomski.Core.Repositories;
 using Diplomski.Core.Requests;
 using Diplomski.Infrastructure.EfModels;
+using LinqKit;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -22,9 +23,32 @@ namespace Diplomski.Infrastructure.EfRepository
         public ArticleRepository(DiplomskiDbContext context) : base(context)
         { }
 
-        public Task<IEnumerable<Article>> FilterArticle(ArticleFilterRequest request)
+        /// <inheritdoc />
+        public async Task<IEnumerable<Article>> FilterArticle(ArticleFilterRequest request)
         {
-            throw new NotImplementedException();
+            ExpressionStarter<Article> predicate = PredicateBuilder.New<Article>();
+
+            if (!string.IsNullOrEmpty(request.CodeSupplier))
+            {
+                predicate = predicate.And(p => p.CodeSupplier.Contains(request.CodeSupplier.ToUpper()));
+            }
+
+            if (!string.IsNullOrEmpty(request.Code))
+            {
+                predicate = predicate.And(p => p.Code.Contains(request.Code.ToUpper()));
+            }
+
+            if (!string.IsNullOrEmpty(request.Name))
+            {
+                predicate = predicate.And(p => p.Name.Contains(request.Name.ToUpper()));
+            }
+
+
+
+            return await GetTableQueryable()
+                        .AsNoTracking()
+                        .Where(predicate)
+                        .ToListAsync();
         }
 
         /// <inheritdoc />

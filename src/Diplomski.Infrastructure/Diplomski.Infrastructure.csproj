@@ -14,6 +14,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="DbfDataReader" Version="0.8.0" />
+		<PackageReference Include="LinqKit" Version="1.2.2" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.16">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>

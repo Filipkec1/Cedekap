@@ -31,7 +31,7 @@ CREATE TABLE [Stores].[Article] (
   [Id] uniqueidentifier PRIMARY KEY DEFAULT (NEWID()),
   [CodeSupplier] varchar(25) NOT NULL,
   [Code] varchar(50) NOT NULL,
-  [Name] varchar(50) NOT NULL,
+  [Name] nvarchar(50) NOT NULL,
   [Exit] decimal(10,2) NOT NULL,
   [Price] decimal(10,2) NOT NULL,
   [Demand] decimal(10,2) NOT NULL,
