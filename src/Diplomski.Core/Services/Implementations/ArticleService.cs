@@ -41,7 +41,7 @@ namespace Diplomski.Core.Services.Implementations
         public async Task<IEnumerable<ArticleResult>> FilterArticle(ArticleFilterRequest request)
         {
             IEnumerable<Article> articleList = await unitOfWork.Article.FilterArticle(request);
-            return articleList.Select(a => new ArticleResult(a));
+            return articleList.Select(x => new ArticleResult(x));
         }
 
         /// <inheritdoc />

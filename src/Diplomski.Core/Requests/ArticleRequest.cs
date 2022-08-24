@@ -8,32 +8,47 @@ namespace Diplomski.Core.Requests
     /// </summary>
     public class ArticleFilterRequest
     {
+        private int takeFirst = 10;
+        public int? TakeFirst {
+
+            get
+            {
+                return takeFirst;
+            }
+            set
+            {
+                if(value is not null)
+                {
+                    takeFirst = (int)value;
+                }
+            }
+        }
+
+        public int? TakeLast { get; set; }
         public string CodeSupplier { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
-        public double? ExitMax { get; set; }
-        public double? ExitMin { get; set; }
-        public double? ExitEqual { get; set; }
-        public double? PriceMax { get; set; }
-        public double? PriceMin { get; set; }
-        public double? PriceEqual { get; set; }
-        public double? DemandMax { get; set; }
-        public double? DemandMin { get; set; }
-        public double? DemandEqual { get; set; }
-        public double? TariffMax { get; set; }
-        public double? TariffMin { get; set; }
+        public decimal? ExitMax { get; set; }
+        public decimal? ExitMin { get; set; }
+        public decimal? ExitEqual { get; set; }
+        public decimal? PriceMax { get; set; }
+        public decimal? PriceMin { get; set; }
+        public decimal? PriceEqual { get; set; }
+        public decimal? DemandMax { get; set; }
+        public decimal? DemandMin { get; set; }
+        public decimal? DemandEqual { get; set; }
         public double? TariffEqual { get; set; }
         public string Pay { get; set; }
         public int? Operator { get; set; }
-        public double? RebateMax { get; set; }
-        public double? RebateMin { get; set; }
-        public double? RebateEqual { get; set; }
-        public double? BuyPriceMax { get; set; }
-        public double? BuyPriceMin { get; set; }
-        public double? BuyPriceEqual { get; set; }
+        public decimal? RebateMax { get; set; }
+        public decimal? RebateMin { get; set; }
+        public decimal? RebateEqual { get; set; }
+        public decimal? BuyPriceMax { get; set; }
+        public decimal? BuyPriceMin { get; set; }
+        public decimal? BuyPriceEqual { get; set; }
         public DateTime? AfterMonth { get; set; }
         public DateTime? BeforeMonth { get; set; }
-        public DateTime? ExactlMonth { get; set; }
+        public DateTime? ExactMonth { get; set; }
         public Guid? StoreId { get; set; }
     }
 

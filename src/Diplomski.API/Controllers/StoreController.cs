@@ -11,7 +11,7 @@ namespace Diplomski.API.Controllers
     [Route("api/[controller]")]
     public class StoreController : ControllerBase
     {
-        private IStoreService storeService;
+        private readonly IStoreService storeService;
 
         /// <summary>
         /// Initialize a new instance of <see cref="StoreController"/> class.

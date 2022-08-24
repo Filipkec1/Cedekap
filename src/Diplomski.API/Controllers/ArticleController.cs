@@ -4,8 +4,6 @@ using Diplomski.Infrastructure.Parsers;
 using Microsoft.AspNetCore.Mvc;
 using Diplomski.Core.Requests;
 using Diplomski.Core.Results;
-using Newtonsoft.Json;
-using Diplomski.Core.Exceptions;
 
 namespace Diplomski.API.Controllers
 {
@@ -16,7 +14,7 @@ namespace Diplomski.API.Controllers
     [Route("api/[controller]")]
     public class ArticleController : ControllerBase
     {
-        private IArticleService articleService;
+        private readonly IArticleService articleService;
 
         /// <summary>
         /// Initialize a new instance of <see cref="ArticleController"/> class.
