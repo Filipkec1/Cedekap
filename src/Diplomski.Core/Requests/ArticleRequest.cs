@@ -24,7 +24,6 @@ namespace Diplomski.Core.Requests
             }
         }
 
-        public int? TakeLast { get; set; }
         public string CodeSupplier { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }

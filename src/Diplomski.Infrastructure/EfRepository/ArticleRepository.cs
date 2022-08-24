@@ -179,16 +179,6 @@ namespace Diplomski.Infrastructure.EfRepository
                 predicate = predicate.And(p => p.StoreId == request.StoreId);
             }
 
-            if(request.TakeLast is not null)
-            {
-                int last = (int)request.TakeLast;
-                return await GetTableQueryable()
-                            .AsNoTracking()
-                            .Where(predicate)
-                            .TakeLast(last)
-                            .ToListAsync();
-            }
-
             int first = (int)request.TakeFirst;
             return await GetTableQueryable()
                         .AsNoTracking()
