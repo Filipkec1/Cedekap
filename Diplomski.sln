@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diplomski.Infrastructure", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diplomski.API", "src\Diplomski.API\Diplomski.API.csproj", "{317099BF-A0BF-487B-A1DB-4274768AE9EE}"
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Diplomski.Front", "src\Diplomski.Front\Diplomski.Front.esproj", "{4955359A-7751-4684-B38B-0F8AFEE39EE8}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,12 +27,6 @@ Global
 		{317099BF-A0BF-487B-A1DB-4274768AE9EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{317099BF-A0BF-487B-A1DB-4274768AE9EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{317099BF-A0BF-487B-A1DB-4274768AE9EE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4955359A-7751-4684-B38B-0F8AFEE39EE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4955359A-7751-4684-B38B-0F8AFEE39EE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4955359A-7751-4684-B38B-0F8AFEE39EE8}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{4955359A-7751-4684-B38B-0F8AFEE39EE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4955359A-7751-4684-B38B-0F8AFEE39EE8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4955359A-7751-4684-B38B-0F8AFEE39EE8}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
