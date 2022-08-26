@@ -1,5 +1,8 @@
 ﻿using Diplomski.Core.Models.Entities;
+using Diplomski.Core.Requests;
+using Diplomski.Core.Results;
 using Diplomski.Core.Services;
+using Diplomski.Core.Services.Implementations;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Diplomski.API.Controllers
@@ -20,6 +23,19 @@ namespace Diplomski.API.Controllers
         public StoreController(IStoreService service)
         {
             storeService = service;
+        }
+
+        /// <summary>
+        /// Get
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("")]
+        [Produces(typeof(IEnumerable<StoreResult>))]
+        public async Task<IActionResult> GetAll()
+        {
+            IEnumerable<StoreResult> storeList = await storeService.GetAll();
+            return Ok(storeList);
         }
     }
 }

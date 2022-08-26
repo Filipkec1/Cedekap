@@ -49,6 +49,13 @@ namespace Diplomski.Core.Services.Implementations
             await unitOfWork.Commit();
         }
 
+        /// <inheritdoc/>
+        public async Task<IEnumerable<StoreResult>> GetAll()
+        {
+            IEnumerable<Store> peopleList = await unitOfWork.Store.GetAll();
+            return peopleList.Select(p => new StoreResult(p));
+        }
+
         /// <inheritdoc />
         public async Task<StoreResult> GetById(Guid id)
         {
