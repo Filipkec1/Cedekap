@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diplomski.Infrastructure", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diplomski.API", "src\Diplomski.API\Diplomski.API.csproj", "{317099BF-A0BF-487B-A1DB-4274768AE9EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diplomski.Web", "src\Diplomski.Web\Diplomski.Web.csproj", "{4807CCDA-CB2B-4CB0-B262-B47EAF41E941}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{317099BF-A0BF-487B-A1DB-4274768AE9EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{317099BF-A0BF-487B-A1DB-4274768AE9EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{317099BF-A0BF-487B-A1DB-4274768AE9EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4807CCDA-CB2B-4CB0-B262-B47EAF41E941}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4807CCDA-CB2B-4CB0-B262-B47EAF41E941}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4807CCDA-CB2B-4CB0-B262-B47EAF41E941}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4807CCDA-CB2B-4CB0-B262-B47EAF41E941}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,8 +1,6 @@
 ﻿using Diplomski.Core.Models.Entities;
-using Diplomski.Core.Requests;
 using Diplomski.Core.Results;
 using Diplomski.Core.Services;
-using Diplomski.Core.Services.Implementations;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Diplomski.API.Controllers
