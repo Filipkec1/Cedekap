@@ -2,11 +2,20 @@
     ViewData["Title"] = "Artikli";
 }
 
-<div class="col-lg-3">
-    <div style="margin-top: 20px" class="bg-white text-dark p-3 mb-3 text-center shadow-lg">
-        <partial name="_ArticleFilter" model="new ArticleFilterRequest()" />
+<div class="row">
+    <div class="col-lg-3">
+        <div style="margin-top: 20px" class="bg-white text-dark p-3 mb-3 text-center shadow-lg">
+            <partial name="_ArticleFilter" model="new ArticleFilterRequest()" />
+        </div>
+    </div>
+
+    <div class="col-lg-9">
+        <div style="margin-top: 20px" class="bg-white text-dark p-3 mb-3 text-center shadow-lg">
+            <partial name="_ArticleChart" />
+        </div>
     </div>
 </div>
+
 
 @section Scripts{
     <script>
@@ -19,13 +28,40 @@
                     data: $("#articleFilter").serializeArray(),
                     success: function (html) {
                         console.log("RADI!")
-                        //$("#TableViewCar").html(html);
                     }
                 });
             })
         });
 
+        const labels = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+        ];
 
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [0, 10, 5, 2, 20, 30, 45],
+            }]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {}
+        };
+
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
 
     </script>
 }

@@ -172,12 +172,12 @@ namespace Diplomski.Infrastructure.EfRepository
                 predicate = predicate.And(p => p.Month.Month == month.Month && p.Month.Year == month.Year);
             }
 
-
             //StoreId
-            //if (request.StoreId is not null)
-            //{
-            //    predicate = predicate.And(p => p.StoreId == request.StoreId);
-            //}
+            foreach(string storeId in request.StoreIdList)
+            {
+                Guid guid = new Guid(storeId);
+                predicate = predicate.And(p => p.StoreId == guid);
+            }
 
             int first = (int)request.TakeFirst;
             return await GetTableQueryable()
