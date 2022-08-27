@@ -1,7 +1,103 @@
-﻿@using Diplomski.Core.Requests
+﻿@model ArticleFilterRequest
 
-@model ArticleFilterRequest
+<h3>Pretraga artikala</h3>
+<form action="@Url.Action("Filter")" method="post" class="form-inline" id="articleFilter">
 
-<form>
+    <div id="div_id_code_supplier" class="form-group">
+        <label>Šifra dobavljača</label>
+        <input id="id_code_supplier" asp-for="CodeSupplier" class="form-control" type="text" placeholder="---" style="text-align: center" />
+    </div>
 
+    <div id="div_id_code" class="form-group" style="margin-top: 3px">
+        <label>Šifra</label>
+        <input id="id_code" asp-for="Code" class="form-control" type="text" placeholder="---" style="text-align: center" />
+    </div>
+
+    <div id="div_id_name" class="form-group"style="margin-top: 3px">
+        <label>Naziv artikla</label>
+        <input id="id_name" asp-for="Name" class="form-control" type="text" placeholder="---" style="text-align: center" />
+    </div>
+
+    <div id="div_id_exit" class="form-group" placeholder="Min" style="margin-top: 3px">
+        <label>Izlaz</label>
+        <div class="d-flex flex-row">
+            <input id="id_exit_min" asp-for="ExitMin" class="form-control" type="number" placeholder="Min" style="text-align: center; width:30%; margin:5px" />
+            <input id="id_exit_max" asp-for="ExitMax" class="form-control" type="number" placeholder="Max" style="text-align: center; width:30%; margin:5px" />
+            <input id="id_exit_equal" asp-for="ExitEqual" class="form-control" type="number" placeholder="Točno" style="text-align: center; width:30%; margin:5px" />
+        </div>
+    </div>
+
+    <div id="div_id_price" class="form-group" style="margin-top: 3px">
+        <label>Cijena</label>
+        <div class="d-flex flex-row">
+            <input id="id_price_min" asp-for="PriceMin" class="form-control" type="number" placeholder="Min" style="text-align: center; width:30%; margin:5px" />
+            <input id="id_price_max" asp-for="PriceMax" class="form-control" type="number" placeholder="Max" style="text-align: center; width:30%; margin:5px" />
+            <input id="id_price_equal" asp-for="PriceEqual" class="form-control" type="number" placeholder="Točno" style="text-align: center; width:30%; margin:5px" />
+        </div>
+    </div>
+
+    <div id="div_id_demand" class="form-group" style="margin-top: 3px">
+        <label>Cijena</label>
+        <div class="d-flex flex-row">
+            <input id="id_demand_min" asp-for="DemandMin" class="form-control" type="number" placeholder="Min" style="text-align: center; width:30%; margin:5px" />
+            <input id="id_demand_max" asp-for="DemandMax" class="form-control" type="number" placeholder="Max" style="text-align: center; width:30%; margin:5px" />
+            <input id="id_demand_equal" asp-for="DemandEqual" class="form-control" type="number" placeholder="Točno" style="text-align: center; width:30%; margin:5px" />
+        </div>
+    </div>
+
+    <div id="div_id_tariff" class="form-group" style="margin-top: 3px">
+        <label>Tarifa</label>
+        <input id="id_tariff_equal" asp-for="TariffEqual" class="form-control" type="number" style="text-align: center" />
+    </div>
+
+    <div id="div_id_pay" class="form-group" style="margin-top: 3px">
+        <label>Plačanje</label>
+        <input id="id_pay" asp-for="Pay" class="form-control" type="text" placeholder="---" style="text-align: center" />
+    </div>
+
+    <div id="div_id_pay" class="form-group" style="margin-top: 3px">
+        <label>Plačanje</label>
+        <input id="id_pay" asp-for="Pay" class="form-control" type="text" style="text-align: center" />
+    </div>
+
+    <div id="div_id_operator" class="form-group"style="margin-top: 3px">
+        <label>Operater</label>
+        <input id="id_operator" asp-for="Operator" class="form-control" type="number" style="text-align: center" />
+    </div>
+
+    <div id="div_id_rebate" class="form-group" style="margin-top: 3px">
+        <label>Rabat</label>
+        <div class="d-flex flex-row">
+            <input id="id_rebate_min" asp-for="RebateMin" class="form-control" type="number" placeholder="Min" style="text-align: center; width:30%; margin:5px" />
+            <input id="id_rebate_max" asp-for="RebateMax" class="form-control" type="number" placeholder="Max" style="text-align: center; width:30%; margin:5px" />
+            <input id="id_rebate_equal" asp-for="RebateEqual" class="form-control" type="number" placeholder="Točno" style="text-align: center; width:30%; margin:5px" />
+        </div>
+    </div>
+
+    <div id="div_id_rebate" class="form-group" style="margin-top: 3px">
+        <label>Rabat</label>
+        <div class="d-flex flex-row">
+            <input id="id_rebate_min" asp-for="RebateMin" class="form-control" type="number" placeholder="Min" style="text-align: center; width:30%; margin:5px" />
+            <input id="id_rebate_max" asp-for="RebateMax" class="form-control" type="number" placeholder="Max" style="text-align: center; width:30%; margin:5px" />
+            <input id="id_rebate_equal" asp-for="RebateEqual" class="form-control" type="number" placeholder="Točno" style="text-align: center; width:30%; margin:5px" />
+        </div>
+    </div>
+
+    <div id="div_id_buy_price" class="form-group" style="margin-top: 3px">
+        <label>Nabavna cijena</label>
+        <div class="d-flex flex-row">
+            <input id="id_buy_price_min" asp-for="BuyPriceMin" class="form-control" type="number" placeholder="Min" style="text-align: center; width:30%; margin:5px" />
+            <input id="id_buy_price_max" asp-for="BuyPriceMax" class="form-control" type="number" placeholder="Max" style="text-align: center; width:30%; margin:5px" />
+            <input id="id_buy_price_equal" asp-for="BuyPriceEqual" class="form-control" type="number" placeholder="Točno" style="text-align: center; width:30%; margin:5px" />
+        </div>
+    </div>
+
+    <div id="div_id_month" class="form-group" style="margin-top: 3px">
+        <label>Mjesec</label>
+        <input id="id_buy_month_after" asp-for="AfterMonth" class="form-control" type="month" placeholder="Od" style="text-align: center; width:70%; margin:5px" />
+        <input id="id_buy_price_before" asp-for="BeforeMonth" class="form-control" type="month" placeholder="Do" style="text-align: center; width:70%; margin:5px" />
+        <input id="id_buy_price_exact" asp-for="ExactMonth" class="form-control" type="month" placeholder="Točno" style="text-align: center; width:70%; margin:5px" />
+    </div>
+
+    <button type="button" class="btn btn-success" id="confirmArticleFilter">Prikaži</button>
 </form>

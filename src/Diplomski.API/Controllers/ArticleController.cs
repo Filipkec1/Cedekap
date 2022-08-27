@@ -33,7 +33,7 @@ namespace Diplomski.API.Controllers
         [HttpPost]
         [Route("Filter")]
         [Produces(typeof(IEnumerable<ArticleResult>))]
-        public async Task<IActionResult> FilterArticle([FromBody] ArticleFilterRequest request)
+        public async Task<IActionResult> FilterArticle([FromForm] ArticleFilterRequest request)
         {
             IEnumerable<ArticleResult> articleList = await articleService.FilterArticle(request);
             return Ok(articleList);
