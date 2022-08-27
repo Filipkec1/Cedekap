@@ -55,5 +55,11 @@ namespace Diplomski.Core.Services.Implementations
 
             return new ArticleResult(article);
         }
+
+        /// <inheritdoc />
+        async Task<IEnumerable<string>> IArticleService.GetStoreList()
+        {
+            return await unitOfWork.Store.GetAllStoreNames();
+        }
     }
 }

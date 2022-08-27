@@ -52,8 +52,8 @@ namespace Diplomski.Core.Services.Implementations
         /// <inheritdoc/>
         public async Task<IEnumerable<StoreResult>> GetAll()
         {
-            IEnumerable<Store> peopleList = await unitOfWork.Store.GetAll();
-            return peopleList.Select(p => new StoreResult(p));
+            IEnumerable<Store> storeList = await unitOfWork.Store.GetAll();
+            return storeList.Select(p => new StoreResult(p));
         }
 
         /// <inheritdoc />

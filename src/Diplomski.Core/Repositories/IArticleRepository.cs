@@ -25,6 +25,6 @@ namespace Diplomski.Core.Repositories
         /// <param name="month">Month of the <see cref="Article.Month"/></param>
         /// <returns></returns>
         Task<IEnumerable<Article>> GetAllStoreAndMonth(Guid storeId, DateTime month);
-
+    
     }
 }

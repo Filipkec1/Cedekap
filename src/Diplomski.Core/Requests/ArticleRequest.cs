@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
+using System.Collections.Generic;
 
 namespace Diplomski.Core.Requests
 {
@@ -17,7 +18,7 @@ namespace Diplomski.Core.Requests
             }
             set
             {
-                if(value is not null)
+                if (value is not null)
                 {
                     takeFirst = (int)value;
                 }
@@ -48,7 +49,7 @@ namespace Diplomski.Core.Requests
         public DateTime? AfterMonth { get; set; }
         public DateTime? BeforeMonth { get; set; }
         public DateTime? ExactMonth { get; set; }
-        public Guid? StoreId { get; set; }
+        public List<string> StoreNameList { get; set; }
     }
 
     /// <summary>

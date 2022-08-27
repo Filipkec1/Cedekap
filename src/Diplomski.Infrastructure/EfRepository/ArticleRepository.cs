@@ -174,10 +174,10 @@ namespace Diplomski.Infrastructure.EfRepository
 
 
             //StoreId
-            if (request.StoreId is not null)
-            {
-                predicate = predicate.And(p => p.StoreId == request.StoreId);
-            }
+            //if (request.StoreId is not null)
+            //{
+            //    predicate = predicate.And(p => p.StoreId == request.StoreId);
+            //}
 
             int first = (int)request.TakeFirst;
             return await GetTableQueryable()

@@ -4,6 +4,7 @@ using Diplomski.Core.Results;
 using Diplomski.Core.Services;
 using Diplomski.Infrastructure.Parsers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Diplomski.Web.Controllers
 {
@@ -35,6 +36,19 @@ namespace Diplomski.Web.Controllers
         {
             IEnumerable<ArticleResult> articleList = await articleService.FilterArticle(request);
             return Ok(articleList);
+        }
+
+        /// <summary>
+        /// Get all the stores from the database.
+        /// </summary>
+        private async Task GetStores()
+        {
+            IEnumerable<string> storeNameList = await articleService.GetStoreList();
+
+            List<SelectListItem>selectItems = new List<SelectListItem>();
+            selectItems = storeNameList.Select(x => new SelectListItem(x, x)).ToList();
+
+            ViewBag.Stores = selectItems;
         }
 
         /// <summary>
@@ -80,8 +94,9 @@ namespace Diplomski.Web.Controllers
             return new DateTime(month.Year, month.Month, 1);
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            await GetStores();
             return View();
         }
     }

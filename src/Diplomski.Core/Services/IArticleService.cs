@@ -34,5 +34,11 @@ namespace Diplomski.Core.Services
         /// <param name="id">User database id.</param>
         /// <returns>Returns <see cref="ArticleResult"/></returns>
         Task<ArticleResult> GetById(Guid id);
+
+        /// <summary>
+        /// Get all <see cref="Store"/> names from the database.
+        /// </summary>
+        /// <returns>A list of <see cref="Store"/> names.</returns>
+        Task<IEnumerable<string>> GetStoreList();
     }
 }
