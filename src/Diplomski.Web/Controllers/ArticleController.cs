@@ -43,10 +43,10 @@ namespace Diplomski.Web.Controllers
         /// </summary>
         private async Task GetStores()
         {
-            IEnumerable<string> storeNameList = await articleService.GetStoreList();
+            IEnumerable<Store> storeList = await articleService.GetStoreList();
 
-            List<SelectListItem>selectItems = new List<SelectListItem>();
-            selectItems = storeNameList.Select(x => new SelectListItem(x, x)).ToList();
+            List<SelectListItem> selectItems = new List<SelectListItem>();
+            selectItems = storeList.Select(x => new SelectListItem(x.Name, x.Id.ToString())).ToList();
 
             ViewBag.Stores = selectItems;
         }

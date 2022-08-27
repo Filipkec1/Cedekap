@@ -57,9 +57,9 @@ namespace Diplomski.Core.Services.Implementations
         }
 
         /// <inheritdoc />
-        async Task<IEnumerable<string>> IArticleService.GetStoreList()
+        public async Task<IEnumerable<Store>> GetStoreList()
         {
-            return await unitOfWork.Store.GetAllStoreNames();
+            return await unitOfWork.Store.GetAll();
         }
     }
 }

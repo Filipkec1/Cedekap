@@ -49,7 +49,7 @@ namespace Diplomski.Core.Requests
         public DateTime? AfterMonth { get; set; }
         public DateTime? BeforeMonth { get; set; }
         public DateTime? ExactMonth { get; set; }
-        public List<string> StoreNameList { get; set; }
+        public List<string> StoreIdList { get; set; }
     }
 
     /// <summary>

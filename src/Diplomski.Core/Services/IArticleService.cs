@@ -36,9 +36,9 @@ namespace Diplomski.Core.Services
         Task<ArticleResult> GetById(Guid id);
 
         /// <summary>
-        /// Get all <see cref="Store"/> names from the database.
+        /// Get all <see cref="Store"/>s from the database.
         /// </summary>
-        /// <returns>A list of <see cref="Store"/> names.</returns>
-        Task<IEnumerable<string>> GetStoreList();
+        /// <returns>A list of <see cref="Store"/>.</returns>
+        Task<IEnumerable<Store>> GetStoreList();
     }
 }
