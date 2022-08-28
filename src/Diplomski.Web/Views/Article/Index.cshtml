@@ -9,10 +9,8 @@
         </div>
     </div>
 
-    <div class="col-lg-9">
-        <div style="margin-top: 20px" class="bg-white text-dark p-3 mb-3 text-center shadow-lg">
-            <partial name="_ArticleChart" />
-        </div>
+    <div class="col-lg-9" id="id_article_sort_div">
+
     </div>
 </div>
 
@@ -26,42 +24,85 @@
                     url: "@Url.Action("Filter")",
                     method: "POST",
                     data: $("#articleFilter").serializeArray(),
-                    success: function (html) {
-                        console.log("RADI!")
-                    }
+                    success: OnSuccessFilterResult,
+                    error: OnErrorFilter
                 });
             })
         });
 
-        const labels = [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-        ];
+        function OnSuccessFilterResult(data){
 
-        const data = {
-            labels: labels,
-            datasets: [{
-                label: 'My First dataset',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: [0, 10, 5, 2, 20, 30, 45],
-            }]
-        };
+            console.log("RADI!")
+            console.log(JSON.stringify($('#articleFilter').serializeArray()));
 
-        const config = {
-            type: 'line',
-            data: data,
-            options: {}
-        };
+            var url = "@Url.Action("Sort")";
 
-        const myChart = new Chart(
-            document.getElementById('myChart'),
-            config
-        );
+            $("#id_article_sort_div").load(url, null);
+
+
+            //$("#id_article_sort").replaceWith(
+            //    $.ajax({
+            //        url: "@Url.Action("Sort")",
+            //        method: "POST",
+            //        success: function (html) {
+            //            $("#id_article_sort_div").html(html);
+            //        }
+            //    }
+            //));
+
+
+        }
+
+        function OnErrorFilter(err){
+
+        }
+
+
+        //const labels = [
+        //    'January',
+        //    'February',
+        //    'March',
+        //    'April',
+        //    'May',
+        //    'June',
+        //];
+
+        //const data = {
+        //    labels: labels,
+        //    datasets: [{
+        //        label: 'My First dataset',
+        //        backgroundColor: 'rgb(255, 99, 132)',
+        //        borderColor: 'rgb(255, 99, 132)',
+        //        data: [0, 10, 5, 2, 20, 30, 45],
+        //    }]
+        //};
+
+        //const config = {
+        //    type: 'line',
+        //    data: data,
+        //    options: {}
+        //};
+
+        //const myChart = new Chart(
+        //    document.getElementById('myChart'),
+        //    config
+        //);
+
+        //$("id_article_filter").on("click", "#SaveCity", function (event) {
+
+        //    $("#TestForm").removeData('validator');
+        //    $("#TestForm").removeData('unobtrusiveValidation');
+        //    $.validator.unobtrusive.parse("#TestForm");
+
+        //    $("#TestForm").validate();
+
+        //    if ($("#TestForm").valid()) {
+        //        $("#myModal").modal("hide");
+        //    }
+
+        //});
+
+
 
     </script>
 }

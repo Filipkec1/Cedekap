@@ -5,6 +5,9 @@ using Diplomski.Core.Services;
 using Diplomski.Infrastructure.Parsers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Caching.Memory;
+using System.Net;
+using System.Text.Json;
 
 namespace Diplomski.Web.Controllers
 {
@@ -15,40 +18,66 @@ namespace Diplomski.Web.Controllers
     public class ArticleController : Controller
     {
         private readonly IArticleService articleService;
+        private readonly IMemoryCache cache;
 
         /// <summary>
         /// Initialize a new instance of <see cref="ArticleController"/> class.
         /// </summary>
         /// <param name="service">Article Controller service.</param>
-        public ArticleController(IArticleService service)
+        public ArticleController(IArticleService service, IMemoryCache cache)
         {
             articleService = service;
+            this.cache = cache;
         }
 
         /// <summary>
         /// Filter all <see cref="Article"/>s from database using <paramref name="request"/>.
         /// </summary>
-        /// <param name="value">Parameters by with <see cref="Article"/>s are filtered.</param>
-        /// <returns>A list of filtered <see cref="Article"/>s.</returns>
+        /// <param name="request">Parameters by with <see cref="Article"/>s are filtered.</param>
+        /// <returns>Http status code <see cref="HttpStatusCode.OK"/>.</returns>
         [HttpPost]
         [Route("Filter")]
         public async Task<IActionResult> FilterArticle([FromForm] ArticleFilterRequest request)
         {
-            IEnumerable<ArticleResult> articleList = await articleService.FilterArticle(request);
-            return Ok(articleList);
+            string requestJson = JsonSerializer.Serialize(request);
+            await GetArticleList(requestJson);
+
+            return Ok();
         }
 
         /// <summary>
-        /// Get all the stores from the database.
+        /// Get for the first time the "_ArticleSort" PartialView.
         /// </summary>
-        private async Task GetStores()
+        [HttpGet]
+        [Route("Sort")]
+        public IActionResult GetArticleSortPartialViewV()
         {
-            IEnumerable<Store> storeList = await articleService.GetStoreList();
+            ArticleShowRequest defaultRequest = new ArticleShowRequest()
+            {
+                Price = true,
+            };
 
-            List<SelectListItem> selectItems = new List<SelectListItem>();
-            selectItems = storeList.Select(x => new SelectListItem(x.Name, x.Id.ToString())).ToList();
+            return PartialView("_ArticleSort", defaultRequest);
+        }
 
-            ViewBag.Stores = selectItems;
+        public async Task<IActionResult> Index()
+        {
+            await GetStores();
+            return View();
+        }
+
+        /// <summary>
+        /// Sort the filtered <see cref="Article"/>s from <see cref="FilterArticle"/>
+        /// </summary>
+        /// <param name="request">Parameters by with <see cref="Article"/>s are sorted.</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("Sort")]
+        public async Task<IActionResult> SortArticle([FromForm] ArticleShowRequest request)
+        {
+            IEnumerable<ArticleResult> articleList = await GetArticleList(request.ArticleFilterRequestJson);
+
+            return Ok();
         }
 
         /// <summary>
@@ -71,6 +100,55 @@ namespace Diplomski.Web.Controllers
         }
 
         /// <summary>
+        /// Get the first day of a selected month.
+        /// </summary>
+        /// <param name="month">The month that the first day of it needs to be found.</param>
+        /// <returns><see cref="DateTime"/> of the first day in the month.</returns>
+        private DateTime FirstDayOfMonth(DateTime month)
+        {
+            return new DateTime(month.Year, month.Month, 1);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="requestJson"></param>
+        /// <returns>A list of <see cref="ArticleResult"/>s.</returns>
+        private async Task<IEnumerable<ArticleResult>> GetArticleList(string requestJson)
+        {
+            //If request is not cached get it from the database and then cache it.
+            if (!cache.TryGetValue(requestJson, out IEnumerable<ArticleResult> articleList))
+            {
+                ArticleFilterRequest? request = JsonSerializer.Deserialize<ArticleFilterRequest>(requestJson);
+
+                articleList = await articleService.FilterArticle(request);
+
+                var cacheEntryOptions = new MemoryCacheEntryOptions()
+                    .SetSlidingExpiration(TimeSpan.FromSeconds(60))
+                    .SetAbsoluteExpiration(TimeSpan.FromSeconds(600))
+                    .SetPriority(CacheItemPriority.Normal)
+                    .SetSize(1024);
+
+                cache.Set(requestJson, articleList, cacheEntryOptions);
+            }
+
+            return articleList;
+        }
+
+        /// <summary>
+        /// Get all the stores from the database.
+        /// </summary>
+        private async Task GetStores()
+        {
+            IEnumerable<Store> storeList = await articleService.GetStoreList();
+
+            List<SelectListItem> selectItems = new List<SelectListItem>();
+            selectItems = storeList.Select(x => new SelectListItem(x.Name, x.Id.ToString())).ToList();
+
+            ViewBag.Stores = selectItems;
+        }
+
+        /// <summary>
         /// Creates new <see cref="MemoryStream"/> from <see cref="IFormFile"/>.
         /// </summary>
         /// <param name="f"><see cref="IFormFile"/> that is going to be used in the new <see cref="MemoryStream"/>.</param>
@@ -82,22 +160,6 @@ namespace Diplomski.Web.Controllers
             memoryStream.Position = 0;
 
             return memoryStream;
-        }
-
-        /// <summary>
-        /// Get the first day of a selected month.
-        /// </summary>
-        /// <param name="month">The month that the first day of it needs to be found.</param>
-        /// <returns><see cref="DateTime"/> of the first day in the month.</returns>
-        private DateTime FirstDayOfMonth(DateTime month)
-        {
-            return new DateTime(month.Year, month.Month, 1);
-        }
-
-        public async Task<IActionResult> Index()
-        {
-            await GetStores();
-            return View();
         }
     }
 }

@@ -1,0 +1,25 @@
+﻿@model ArticleShowRequest
+
+<div style="margin-top: 20px" class="bg-white text-dark p-3 mb-3 text-center shadow-lg" id="id_article_sort">
+    <form action="@Url.Action("Sort")" method="post" class="form-inline" id="articleSort">
+
+        <div id="div_id_code_supplier" class="form-group">
+
+            <label>Izlaz</label>
+            <input asp-for="Exit" type="checkbox"/>
+
+            <label>Cijena</label>
+            <input asp-for="Price" type="checkbox" >
+
+            <label>Potražnja</label>
+            <input asp-for="Demand" type="checkbox"/>
+
+            <label>Nabavna cijena</label>
+            <input asp-for="BuyPrice" type="checkbox"/>
+        </div>
+
+        <input id="id_ArticleFilterRequestJson" asp-for="ArticleFilterRequestJson" type="hidden"/>
+
+        <button type="button" class="btn btn-success" id="confirmArticleSort">Sortiraj</button>
+    </form>
+</div>

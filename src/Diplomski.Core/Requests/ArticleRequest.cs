@@ -53,6 +53,18 @@ namespace Diplomski.Core.Requests
     }
 
     /// <summary>
+    ///  Defines Article show request.
+    /// </summary>
+    public class ArticleShowRequest
+    {
+        public string ArticleFilterRequestJson { get; set; }
+        public bool Exit { get; set; }
+        public bool Price { get; set; }
+        public bool Demand { get; set; }
+        public bool BuyPrice { get; set; }
+    }
+
+    /// <summary>
     /// Defines dbf file upload request.
     /// </summary>
     public class ArticleDbfFileUploadRequest
