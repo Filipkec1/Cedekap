@@ -17,6 +17,10 @@
 
 @section Scripts{
     <script>
+
+        /**
+         * When the page is ready make it possible to click the filter button.
+         */
         $(document).ready(function () {
             $("#confirmArticleFilter").click(function () {
 
@@ -24,39 +28,24 @@
                     url: "@Url.Action("Filter")",
                     method: "POST",
                     data: $("#articleFilter").serializeArray(),
-                    success: OnSuccessFilterResult,
-                    error: OnErrorFilter
+                    success: OnSuccessFilterResult
+                    //error: OnErrorFilter
                 });
             })
         });
 
-        function OnSuccessFilterResult(data){
+        /**
+         * When the filter button is clicked for the first time create the sort partial view.
+         * Nn subsequent click do nothing.
+         */
+        function OnSuccessFilterResult(){
 
-            console.log("RADI!")
+            if (! !!document.getElementById("id_article_sort")) {
+                var url = "@Url.Action("Sort")";
+                $("#id_article_sort_div").load(url, null);
+            }
             console.log(JSON.stringify($('#articleFilter').serializeArray()));
-
-            var url = "@Url.Action("Sort")";
-
-            $("#id_article_sort_div").load(url, null);
-
-
-            //$("#id_article_sort").replaceWith(
-            //    $.ajax({
-            //        url: "@Url.Action("Sort")",
-            //        method: "POST",
-            //        success: function (html) {
-            //            $("#id_article_sort_div").html(html);
-            //        }
-            //    }
-            //));
-
-
         }
-
-        function OnErrorFilter(err){
-
-        }
-
 
         //const labels = [
         //    'January',
