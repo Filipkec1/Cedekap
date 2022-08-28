@@ -2,6 +2,8 @@ using Diplomski.Core.Constants;
 using Diplomski.Core.Settings;
 using Diplomski.Infrastructure.EfModels;
 using Diplomski.Web.Extensions;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -25,6 +27,12 @@ namespace Diplomski.Web
             {
                 maker.UseSqlServer(CreateConnectionString(builder.Configuration));
                 maker.EnableSensitiveDataLogging(false);
+            });
+
+            builder.Services.Configure<MvcViewOptions>(options =>
+            {
+                // Disable hidden checkboxes
+                options.HtmlHelperOptions.CheckBoxHiddenInputRenderMode = CheckBoxHiddenInputRenderMode.None;
             });
 
             var app = builder.Build();

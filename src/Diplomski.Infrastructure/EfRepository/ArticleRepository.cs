@@ -179,11 +179,9 @@ namespace Diplomski.Infrastructure.EfRepository
                 predicate = predicate.And(p => p.StoreId == guid);
             }
 
-            int first = (int)request.TakeFirst;
             return await GetTableQueryable()
                         .AsNoTracking()
                         .Where(predicate)
-                        .Take(first)
                         .ToListAsync();
         }
 

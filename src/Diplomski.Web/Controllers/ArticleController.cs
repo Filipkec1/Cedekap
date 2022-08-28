@@ -50,14 +50,21 @@ namespace Diplomski.Web.Controllers
         /// </summary>
         [HttpGet]
         [Route("Sort")]
-        public IActionResult GetArticleSortPartialViewV()
+        public IActionResult GetArticleSortPartialView()
         {
             ArticleShowRequest defaultRequest = new ArticleShowRequest()
             {
-                Price = true,
+                PriceShow = true
             };
 
             return PartialView("_ArticleSort", defaultRequest);
+        }
+
+        [HttpGet]
+        [Route("Chart")]
+        public IActionResult GetArticleChartPartialView()
+        {
+            return PartialView("_ArticleChart");
         }
 
         public async Task<IActionResult> Index()
@@ -73,10 +80,15 @@ namespace Diplomski.Web.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("Sort")]
-        public async Task<IActionResult> SortArticle([FromForm] ArticleShowRequest request)
+        public async Task<IActionResult> SortArticle([FromForm]ArticleCombineRequest request)
         {
-            IEnumerable<ArticleResult> articleList = await GetArticleList(request.ArticleFilterRequestJson);
+            //ArticleFilterRequest? aaa = JsonSerializer.Deserialize<ArticleFilterRequest>(request.ArticleFilterRequestJson);
 
+            //string test = "no";
+
+            //IEnumerable<ArticleResult> articleList = await GetArticleList(request.ArticleFilterRequestJson);
+
+            
             return Ok();
         }
 

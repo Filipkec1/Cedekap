@@ -6,19 +6,21 @@
         <div id="div_id_code_supplier" class="form-group">
 
             <label>Izlaz</label>
-            <input asp-for="Exit" type="checkbox"/>
+            <input asp-for="ExitShow" type="checkbox" id="id_exit" />
 
             <label>Cijena</label>
-            <input asp-for="Price" type="checkbox" >
+            <input asp-for="PriceShow" type="checkbox" id="id_price" />
 
             <label>Potražnja</label>
-            <input asp-for="Demand" type="checkbox"/>
+            <input asp-for="DemandShow" type="checkbox" id="id_demand">
+            </input>
 
             <label>Nabavna cijena</label>
-            <input asp-for="BuyPrice" type="checkbox"/>
-        </div>
+            <input asp-for="BuyPriceShow" type="checkbox" id="id_buy_price" />
 
-        <input id="id_ArticleFilterRequestJson" asp-for="ArticleFilterRequestJson" type="hidden"/>
+            <label>Pokazati</label>
+            <input id="id_show" asp-for="Show" class="form-control" type="text" placeholder="Min" style="text-align: center; width:30%; margin:0px 5px" />
+        </div>
 
         <button type="button" class="btn btn-success" id="confirmArticleSort">Sortiraj</button>
     </form>
