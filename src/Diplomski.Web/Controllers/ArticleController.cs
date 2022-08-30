@@ -6,6 +6,7 @@ using Diplomski.Infrastructure.Parsers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Caching.Memory;
+using System.Collections.Generic;
 using System.Net;
 using System.Text.Json;
 
@@ -60,6 +61,9 @@ namespace Diplomski.Web.Controllers
             return PartialView("_ArticleSort", defaultRequest);
         }
 
+        /// <summary>
+        /// Get for the first time the "_ArticleChart" PartialView.
+        /// </summary>
         [HttpGet]
         [Route("Chart")]
         public IActionResult GetArticleChartPartialView()
@@ -67,6 +71,9 @@ namespace Diplomski.Web.Controllers
             return PartialView("_ArticleChart");
         }
 
+        /// <summary>
+        /// Call the view responsible for displaying the chart.
+        /// </summary>
         public async Task<IActionResult> ChartView()
         {
             await GetStores();

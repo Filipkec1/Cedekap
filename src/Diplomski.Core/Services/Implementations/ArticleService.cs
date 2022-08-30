@@ -117,6 +117,7 @@ namespace Diplomski.Core.Services.Implementations
             data.Add(numberList);
             data.Add(labelList);
             data.Add(labelTitle);
+            data.Add(articleList);
 
             return data;
         }

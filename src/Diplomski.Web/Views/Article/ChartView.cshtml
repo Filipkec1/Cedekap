@@ -3,23 +3,19 @@
 }
 
 <div class="row">
-    <div class="col-lg-3">
+    <div class="col-lg-12">
         <div style="margin-top: 20px" class="bg-white text-dark p-3 mb-3 text-center shadow-lg">
             <partial name="_ArticleFilter" model="new ArticleFilterRequest()" />
         </div>
     </div>
 
-    <div class="col-lg-9">
+    <div class="col-lg-12" id="id_article_sort_div">
 
-        <div class="col-lg-12" id="id_article_sort_div">
-
-        </div>
-
-        <div class="col-lg-12" id="id_article_chart_div">
-
-        </div>
     </div>
 
+    <div class="col-lg-12" id="id_article_chart_div">
+
+    </div>
 </div>
 
 
@@ -59,9 +55,7 @@
          */
         $("#id_article_sort_div").on("click", "#confirmArticleSort", function (event) {
 
-
             var sortData = ObjectifyForms();
-
             $.ajax({
                 url: "@Url.Action("Sort")",
                 data: sortData,
@@ -96,8 +90,8 @@
         */
         function OnSuccessSortResult(data) {
 
-            var url = "@Url.Action("Chart")";
-            $("#id_article_chart_div").load(url, function () {
+            var urlChart = "@Url.Action("Chart")";
+            $("#id_article_chart_div").load(urlChart, function () {
 
                 new Chart("id_article_chart",
                 {
@@ -112,8 +106,9 @@
                         }]
                     }
                 });
-
             });
+
+            var articleList = JSON.stringify(data[3]);
         }
     </script>
 }
