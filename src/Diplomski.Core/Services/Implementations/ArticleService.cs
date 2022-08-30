@@ -3,6 +3,7 @@ using Diplomski.Core.Models.Entities;
 using Diplomski.Core.Requests;
 using Diplomski.Core.Results;
 using Diplomski.Core.UnitsOfWork;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -117,7 +118,9 @@ namespace Diplomski.Core.Services.Implementations
             data.Add(numberList);
             data.Add(labelList);
             data.Add(labelTitle);
-            data.Add(articleList);
+
+            string jsonString = JsonConvert.SerializeObject(articleList, Formatting.None);
+            data.Add(jsonString);
 
             return data;
         }

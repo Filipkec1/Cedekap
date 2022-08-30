@@ -16,6 +16,10 @@
     <div class="col-lg-12" id="id_article_chart_div">
 
     </div>
+
+    <div class="col-lg-12" id="id_article_list_div">
+
+    </div>
 </div>
 
 
@@ -108,7 +112,12 @@
                 });
             });
 
-            var articleList = JSON.stringify(data[3]);
+            var urlLsit = "@Url.Action("List")";
+            $.ajax({
+                url: urlLsit,
+                data: { "jsonString": data[3] },
+                method: 'POST',
+            })
         }
     </script>
 }

@@ -6,7 +6,6 @@ using Diplomski.Infrastructure.Parsers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Caching.Memory;
-using System.Collections.Generic;
 using System.Net;
 using System.Text.Json;
 
@@ -32,6 +31,15 @@ namespace Diplomski.Web.Controllers
         }
 
         /// <summary>
+        /// Call the view responsible for displaying the chart.
+        /// </summary>
+        public async Task<IActionResult> ChartView()
+        {
+            await GetStores();
+            return View();
+        }
+
+        /// <summary>
         /// Filter all <see cref="Article"/>s from database using <paramref name="request"/>.
         /// </summary>
         /// <param name="request">Parameters by with <see cref="Article"/>s are filtered.</param>
@@ -44,6 +52,16 @@ namespace Diplomski.Web.Controllers
             await GetArticleList(requestJson);
 
             return Ok();
+        }
+
+        /// <summary>
+        /// Get for the first time the "_ArticleChart" PartialView.
+        /// </summary>
+        [HttpGet]
+        [Route("Chart")]
+        public IActionResult GetArticleChartPartialView()
+        {
+            return PartialView("_ArticleChart");
         }
 
         /// <summary>
@@ -62,32 +80,13 @@ namespace Diplomski.Web.Controllers
         }
 
         /// <summary>
-        /// Get for the first time the "_ArticleChart" PartialView.
-        /// </summary>
-        [HttpGet]
-        [Route("Chart")]
-        public IActionResult GetArticleChartPartialView()
-        {
-            return PartialView("_ArticleChart");
-        }
-
-        /// <summary>
-        /// Call the view responsible for displaying the chart.
-        /// </summary>
-        public async Task<IActionResult> ChartView()
-        {
-            await GetStores();
-            return View();
-        }
-
-        /// <summary>
         /// Sort the filtered <see cref="Article"/>s from <see cref="FilterArticle"/>
         /// </summary>
         /// <param name="request">Parameters by with <see cref="Article"/>s are sorted.</param>
         /// <returns></returns>
         [HttpPost]
         [Route("Sort")]
-        public async Task<IActionResult> SortArticle([FromForm]ArticleCombineRequest request)
+        public async Task<IActionResult> SortArticle([FromForm] ArticleCombineRequest request)
         {
             ArticleFilterRequest filterRequest = new ArticleFilterRequest(request);
             IEnumerable<ArticleResult> articleResultList = await GetArticleList(JsonSerializer.Serialize(filterRequest));
@@ -95,6 +94,16 @@ namespace Diplomski.Web.Controllers
             IEnumerable<object> data = articleService.SortArticle(request, articleResultList);
             return Ok(data);
         }
+
+        [HttpPost]
+        [Route("List")]
+        public IActionResult ListArticles(string jsonString)
+        {
+            List<ArticleResult> articleResultList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ArticleResult>>(jsonString);
+
+            return Ok();
+        }
+
 
         /// <summary>
         /// Read selected dbf file and convert the data to objects that are saved to the database.
@@ -126,7 +135,7 @@ namespace Diplomski.Web.Controllers
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="requestJson"></param>
         /// <returns>A list of <see cref="ArticleResult"/>s.</returns>

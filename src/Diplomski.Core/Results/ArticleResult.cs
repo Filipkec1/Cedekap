@@ -23,6 +23,14 @@ namespace Diplomski.Core.Results
         public DateTime Month { get; set; }
 
         /// <summary>
+        /// The default constructor.
+        /// </summary>
+        public ArticleResult()
+        {
+
+        }
+
+        /// <summary>
         /// Initializes a new instance of <see cref="ArticleResult"/>.
         /// </summary>s
         /// <param name="article">Article.</param>
