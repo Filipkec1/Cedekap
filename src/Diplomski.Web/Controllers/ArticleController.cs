@@ -67,7 +67,7 @@ namespace Diplomski.Web.Controllers
             return PartialView("_ArticleChart");
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> ChartView()
         {
             await GetStores();
             return View();
@@ -85,11 +85,8 @@ namespace Diplomski.Web.Controllers
             ArticleFilterRequest filterRequest = new ArticleFilterRequest(request);
             IEnumerable<ArticleResult> articleResultList = await GetArticleList(JsonSerializer.Serialize(filterRequest));
 
-
-
-
-
-            return Ok();
+            IEnumerable<object> data = articleService.SortArticle(request, articleResultList);
+            return Ok(data);
         }
 
         /// <summary>
@@ -145,11 +142,6 @@ namespace Diplomski.Web.Controllers
             }
 
             return articleList;
-        }
-
-        private IEnumerable<ArticleResult> SortArticleList(IEnumerable<ArticleResult> articleResultFilterList, )
-        {
-
         }
 
         /// <summary>

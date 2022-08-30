@@ -61,5 +61,64 @@ namespace Diplomski.Core.Services.Implementations
         {
             return await unitOfWork.Store.GetAll();
         }
+
+        /// <inheritdoc />
+        public IEnumerable<object> SortArticle(ArticleCombineRequest request, IEnumerable<ArticleResult> articleResultList)
+        {
+            List<object> data = new List<object>();
+            List<ArticleResult> articleList = new List<ArticleResult>();
+            List<double> numberList = new List<double>();
+            List<string> labelList = new List<string>();
+            string labelTitle = "";
+
+
+            if (request.BuyPriceShow == true)
+            {
+                articleList = articleResultList.OrderByDescending(x => x.BuyPrice)
+                                               .Take(request.Show)
+                                               .ToList();
+
+                numberList = articleList.Select(x => (double)x.BuyPrice).ToList();
+                labelTitle = "Nabavna cijena";
+            }
+
+            if (request.DemandShow == true)
+            {
+                articleList = articleResultList.OrderByDescending(x => x.Demand)
+                                               .Take(request.Show)
+                                               .ToList();
+
+                numberList = articleList.Select(x => (double)x.Demand).ToList();
+                labelTitle = "Potražnja";
+            }
+
+            if (request.ExitShow == true)
+            {
+                articleList = articleResultList.OrderByDescending(x => x.Exit)
+                                               .Take(request.Show)
+                                               .ToList();
+
+                numberList = articleList.Select(x => (double)x.Exit).ToList();
+                labelTitle = "Izlaz";
+            }
+
+            if (request.PriceShow == true)
+            {
+                articleList = articleResultList.OrderByDescending(x => x.Price)
+                                               .Take(request.Show)
+                                               .ToList();
+
+                numberList = articleList.Select(x => (double)x.Price).ToList();
+                labelTitle = "Cijena";
+            }
+
+            labelList = articleList.Select(x => x.Name).ToList();
+
+            data.Add(numberList);
+            data.Add(labelList);
+            data.Add(labelTitle);
+
+            return data;
+        }
     }
 }

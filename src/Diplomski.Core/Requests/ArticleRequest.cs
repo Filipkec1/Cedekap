@@ -17,28 +17,10 @@ namespace Diplomski.Core.Requests
     public class ArticleCombineRequest
     {
         public bool BuyPriceShow { get; set; }
-
         public bool DemandShow { get; set; }
-
         public bool ExitShow { get; set; }
-
         public bool PriceShow { get; set; }
-
-        private int show = 10;
-        public int? Show
-        {
-            get
-            {
-                return show;
-            }
-            set
-            {
-                if (value is not null)
-                {
-                    show = (int)value;
-                }
-            }
-        }
+        public int Show { get; set; }
         public DateTime? AfterMonth { get; set; }
         public DateTime? BeforeMonth { get; set; }
         public decimal? BuyPriceEqual { get; set; }
@@ -97,6 +79,9 @@ namespace Diplomski.Core.Requests
         public List<string> StoreIdList { get; set; }
         public double? TariffEqual { get; set; }
 
+        public ArticleFilterRequest()
+        { }
+
         public ArticleFilterRequest(ArticleCombineRequest articleCombine)
         {
             this.AfterMonth = articleCombine.AfterMonth;
@@ -141,7 +126,7 @@ namespace Diplomski.Core.Requests
         public bool PriceShow { get; set; }
 
         private int show = 10;
-        public int? Show
+        public int Show
         {
             get
             {
@@ -149,9 +134,9 @@ namespace Diplomski.Core.Requests
             }
             set
             {
-                if (value is not null && (int)value > show)
+                if (value > show)
                 {
-                    show = (int)value;
+                    show = value;
                 }
             }
         }

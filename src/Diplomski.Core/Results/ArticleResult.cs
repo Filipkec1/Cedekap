@@ -34,6 +34,7 @@ namespace Diplomski.Core.Results
             Name = article.Name;
             Exit = article.Exit;
             Price = article.Price;
+            Demand = article.Demand;
             Tariff = article.Tariff;
             Pay = article.Pay;
             Operator = article.Operator;

@@ -37,7 +37,6 @@
                     method: "POST",
                     data: $("#articleFilter").serializeArray(),
                     success: OnSuccessFilterResult
-                    //error: OnErrorFilter
                 });
             })
         });
@@ -95,41 +94,26 @@
         * When the sort button is clicked for the first time create the chart partial view.
         * On subsequent redraw it.
         */
-        function OnSuccessSortResult() {
+        function OnSuccessSortResult(data) {
 
             var url = "@Url.Action("Chart")";
             $("#id_article_chart_div").load(url, function () {
-                const myChart = new Chart(
-                    document.getElementById('myChart'),
-                    config
-                );
+
+                new Chart("id_article_chart",
+                {
+                    type: 'bar',
+                    data:{
+                        labels: data[1],
+                        datasets: [{
+                            data: data[0],
+                            backgroundColor: 'rgb(255, 0, 0)',
+                            borderColor: 'rgb(255, 0, 0)',
+                            label: data[2]
+                        }]
+                    }
+                });
+
             });
         }
-
-        const labels = [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-        ];
-
-        const data = {
-            labels: labels,
-            datasets: [{
-                label: 'My First dataset',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: [0, 10, 5, 2, 20, 30, 45],
-            }]
-        };
-
-        const config = {
-            type: 'line',
-            data: data,
-            options: {}
-        };
-
     </script>
 }

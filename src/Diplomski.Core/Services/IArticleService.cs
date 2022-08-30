@@ -29,6 +29,14 @@ namespace Diplomski.Core.Services
         Task<IEnumerable<ArticleResult>> FilterArticle(ArticleFilterRequest request);
 
         /// <summary>
+        /// Sort all <paramref name="articleResultList"/> by using <paramref name="request"/>.
+        /// </summary>
+        /// <param name="request">Parameters by witch the <paramref name="articleResultList"/> will be sorted.</param>
+        /// <param name="articleResultList">List of <see cref=ArticleResult""/> that are going to be sorted.</param>
+        /// <returns>List of sorted <see cref="ArticleResult"/> from <paramref name="articleResultList"/>.</returns>
+        IEnumerable<object> SortArticle(ArticleCombineRequest request, IEnumerable<ArticleResult> articleResultList);
+
+        /// <summary>
         /// Gets Article entity by id.
         /// </summary>
         /// <param name="id">User database id.</param>
