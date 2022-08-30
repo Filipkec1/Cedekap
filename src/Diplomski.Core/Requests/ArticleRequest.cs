@@ -96,6 +96,35 @@ namespace Diplomski.Core.Requests
         public decimal? RebateMin { get; set; }
         public List<string> StoreIdList { get; set; }
         public double? TariffEqual { get; set; }
+
+        public ArticleFilterRequest(ArticleCombineRequest articleCombine)
+        {
+            this.AfterMonth = articleCombine.AfterMonth;
+            this.BeforeMonth = articleCombine.BeforeMonth;
+            this.BuyPriceEqual = articleCombine.BuyPriceEqual;
+            this.BuyPriceMax = articleCombine.BuyPriceMax;
+            this.BuyPriceMin = articleCombine.BuyPriceMin;
+            this.Code = articleCombine.Code;
+            this.CodeSupplier = articleCombine.CodeSupplier;
+            this.DemandEqual = articleCombine.DemandEqual;
+            this.DemandMax = articleCombine.DemandMax;
+            this.DemandMin = articleCombine.DemandMin;
+            this.ExactMonth = articleCombine.ExactMonth;
+            this.ExitEqual = articleCombine.ExitEqual;
+            this.ExitMax = articleCombine.ExitMax;
+            this.ExitMin = articleCombine.ExitMin;
+            this.Name = articleCombine.Name;
+            this.Operator = articleCombine.Operator;
+            this.Pay = articleCombine.Pay;
+            this.PriceEqual = articleCombine.PriceEqual;
+            this.PriceMax = articleCombine.PriceMax;
+            this.PriceMin = articleCombine.PriceMin;
+            this.RebateEqual = articleCombine.RebateEqual;
+            this.RebateMax = articleCombine.RebateMax;
+            this.RebateMin = articleCombine.RebateMin;
+            this.StoreIdList = articleCombine.StoreIdList;
+            this.TariffEqual = articleCombine.TariffEqual;
+        }
     }
 
     /// <summary>
@@ -120,7 +149,7 @@ namespace Diplomski.Core.Requests
             }
             set
             {
-                if (value is not null)
+                if (value is not null && (int)value > show)
                 {
                     show = (int)value;
                 }

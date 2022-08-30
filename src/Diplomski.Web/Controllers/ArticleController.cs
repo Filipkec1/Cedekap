@@ -82,13 +82,13 @@ namespace Diplomski.Web.Controllers
         [Route("Sort")]
         public async Task<IActionResult> SortArticle([FromForm]ArticleCombineRequest request)
         {
-            //ArticleFilterRequest? aaa = JsonSerializer.Deserialize<ArticleFilterRequest>(request.ArticleFilterRequestJson);
+            ArticleFilterRequest filterRequest = new ArticleFilterRequest(request);
+            IEnumerable<ArticleResult> articleResultList = await GetArticleList(JsonSerializer.Serialize(filterRequest));
 
-            //string test = "no";
 
-            //IEnumerable<ArticleResult> articleList = await GetArticleList(request.ArticleFilterRequestJson);
 
-            
+
+
             return Ok();
         }
 
@@ -145,6 +145,11 @@ namespace Diplomski.Web.Controllers
             }
 
             return articleList;
+        }
+
+        private IEnumerable<ArticleResult> SortArticleList(IEnumerable<ArticleResult> articleResultFilterList, )
+        {
+
         }
 
         /// <summary>
