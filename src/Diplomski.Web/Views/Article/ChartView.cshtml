@@ -113,11 +113,7 @@
             });
 
             var urlLsit = "@Url.Action("List")";
-            $.ajax({
-                url: urlLsit,
-                data: { "jsonString": data[3] },
-                method: 'POST',
-            })
+            $("#id_article_list_div").load(urlLsit, { "jsonString": data[3] })
         }
     </script>
 }

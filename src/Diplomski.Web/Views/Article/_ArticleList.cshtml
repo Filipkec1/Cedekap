@@ -1,1 +1,41 @@
-﻿
+﻿@model IEnumerable<ArticleResult>
+
+<div style="margin-top: 20px" class="bg-white text-dark p-3 mb-3 text-center shadow-lg" id="id_article_list">
+    <table style="margin-top: 20px;" class="table table-condensed">
+        <thead>
+            <tr>
+                <th>Šifra dobavljača</th>
+                <th>Šifra</th>
+                <th>Naziv</th>
+                <th>Izlaz</th>
+                <th>Cijena kn</th>
+                <th>Potražnja</th>
+                <th>Tarifa</th>
+                <th>Plačanje</th>
+                <th>Operater</th>
+                <th>Nabavna cijena</th>
+                <th>Mjesec</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ArticleResult article in Model)
+            {
+                <tr>
+                    <td>@article.CodeSupplier</td>
+                    <td>@article.Code</td>
+                    <td>@article.Name</td>
+                    <td>@article.Exit</td>
+                    <td>@article.Price</td>
+                    <td>@article.Demand</td>
+                    <td>@article.Tariff</td>
+                    <td>@article.Pay</td>
+                    <td>@article.Operator</td>
+                    <td>@article.BuyPrice</td>
+                    <td>
+                        @article.Month.Month - @article.Month.Year
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

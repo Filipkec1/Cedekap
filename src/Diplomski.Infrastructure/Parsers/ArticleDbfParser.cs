@@ -55,6 +55,7 @@ namespace Diplomski.Infrastructure.Parsers
                     newArticle.Demand = Convert.ToDecimal(dbfRecord.Values[9].ToString());
                     newArticle.Tariff = Convert.ToDouble(dbfRecord.Values[10].ToString());
                     newArticle.Pay = dbfRecord.Values[11].ToString();
+                    newArticle.Operator = Convert.ToInt32(dbfRecord.Values[12].ToString());
                     newArticle.Rebate = Convert.ToDecimal(dbfRecord.Values[13].ToString());
                     newArticle.BuyPrice = Convert.ToDecimal(dbfRecord.Values[15].ToString());
                     newArticle.Month = firstDayOfMonth;

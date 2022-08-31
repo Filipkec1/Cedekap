@@ -173,11 +173,14 @@ namespace Diplomski.Infrastructure.EfRepository
             }
 
             //StoreId
-            foreach(string storeId in request.StoreIdList)
-            {
-                Guid guid = new Guid(storeId);
-                predicate = predicate.And(p => p.StoreId == guid);
-            }
+            //foreach(string storeId in request.StoreIdList)
+            //{
+            //}
+
+
+            Guid guid = new Guid(request.StoreId);
+            predicate = predicate.And(p => p.StoreId == guid);
+
 
             return await GetTableQueryable()
                         .AsNoTracking()

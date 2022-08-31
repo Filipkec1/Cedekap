@@ -100,8 +100,7 @@ namespace Diplomski.Web.Controllers
         public IActionResult ListArticles(string jsonString)
         {
             List<ArticleResult> articleResultList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ArticleResult>>(jsonString);
-
-            return Ok();
+            return PartialView("_ArticleList", articleResultList);
         }
 
 

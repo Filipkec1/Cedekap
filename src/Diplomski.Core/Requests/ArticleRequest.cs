@@ -44,7 +44,8 @@ namespace Diplomski.Core.Requests
         public decimal? RebateEqual { get; set; }
         public decimal? RebateMax { get; set; }
         public decimal? RebateMin { get; set; }
-        public List<string> StoreIdList { get; set; }
+        //public List<string> StoreIdList { get; set; }
+        public string StoreId { get; set; }
         public double? TariffEqual { get; set; }
     }
 
@@ -76,7 +77,8 @@ namespace Diplomski.Core.Requests
         public decimal? RebateEqual { get; set; }
         public decimal? RebateMax { get; set; }
         public decimal? RebateMin { get; set; }
-        public List<string> StoreIdList { get; set; }
+        //public List<string> StoreIdList { get; set; }
+        public string StoreId { get; set; }
         public double? TariffEqual { get; set; }
 
         public ArticleFilterRequest()
@@ -107,7 +109,7 @@ namespace Diplomski.Core.Requests
             this.RebateEqual = articleCombine.RebateEqual;
             this.RebateMax = articleCombine.RebateMax;
             this.RebateMin = articleCombine.RebateMin;
-            this.StoreIdList = articleCombine.StoreIdList;
+            this.StoreId = articleCombine.StoreId;
             this.TariffEqual = articleCombine.TariffEqual;
         }
     }

@@ -9,7 +9,7 @@
             <div id="div_id_stores" class="form-group topSpace">
                 <label>Izaberite trgovine</label>
                 @*<select asp-for="StoreIdList" asp-items="ViewBag.Stores" multiple style="width:95%; margin:auto">*@
-                <select asp-for="StoreIdList" asp-items="ViewBag.Stores" style="width:95%; margin:auto">
+                <select asp-for="StoreId" asp-items="ViewBag.Stores" style="width:95%; margin:auto">
                 </select>
             </div>
 
@@ -29,7 +29,7 @@
             </div>
         </div>
 
-        <div class="col-lg-4">
+        <div class="col-lg-4 border-start border-end">
             <div id="div_id_exit" class="form-group topSpace">
                 <label>Izlaz</label>
                 <div class="d-flex flex-row centerElements">
@@ -102,7 +102,7 @@
                         <input id="id_buy_month_after" asp-for="AfterMonth" class="form-control" type="month" placeholder="Od" style="text-align: center; width:70%; margin:5px" />
                     </div>
 
-                    <div class="d-flex flex-row centerElements">
+@*                    <div class="d-flex flex-row centerElements">
                         <label>Do</label>
                         <input id="id_buy_price_before" asp-for="BeforeMonth" class="form-control" type="month" placeholder="Do" style="text-align: center; width:70%; margin:5px" />
                     </div>
@@ -110,7 +110,7 @@
                     <div class="d-flex flex-row centerElements">
                         <label>Točno</label>
                         <input id="id_buy_price_exact" asp-for="ExactMonth" class="form-control" type="month" placeholder="Točno" style="text-align: center; width:70%; margin:5px" />
-                    </div>
+                    </div>*@
                 </div>
             </div>
         </div>
