@@ -19,6 +19,7 @@ namespace Diplomski.Web.Controllers
     {
         private readonly IArticleService articleService;
         private readonly IMemoryCache cache;
+        private CancellationTokenSource resetCacheToken = new();
 
         /// <summary>
         /// Initialize a new instance of <see cref="ArticleController"/> class.
@@ -33,7 +34,20 @@ namespace Diplomski.Web.Controllers
         /// <summary>
         /// Call the view responsible for displaying the chart.
         /// </summary>
-        public async Task<IActionResult> ChartView()
+        [HttpGet]
+        [Route("Graf")]
+        public async Task<IActionResult> ArticleChartView()
+        {
+            await GetStores();
+            return View();
+        }
+
+        /// <summary>
+        /// Call the view responsible for dbf upload.
+        /// </summary>
+        [HttpGet]
+        [Route("Ucitavanje")]
+        public async Task<IActionResult> ArticleUploadView()
         {
             await GetStores();
             return View();

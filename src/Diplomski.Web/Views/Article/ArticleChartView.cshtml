@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Artikli";
+    ViewData["Title"] = "Artikli Graf";
 }
 
 <div class="row">
@@ -48,9 +48,9 @@
         function OnSuccessFilterResult(){
 
             if (! !!document.getElementById("id_article_sort")) {
+                var url = "@Url.Action("Sort")";
+                $("#id_article_sort_div").load(url, null);
             }
-            var url = "@Url.Action("Sort")";
-            $("#id_article_sort_div").load(url, null);
         }
 
         /**
