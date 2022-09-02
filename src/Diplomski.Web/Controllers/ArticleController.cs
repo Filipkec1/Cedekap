@@ -39,6 +39,8 @@ namespace Diplomski.Web.Controllers
         public async Task<IActionResult> ArticleChartView()
         {
             await GetStores();
+            GetSortList();
+            GetOrderList();
             return View();
         }
 
@@ -153,6 +155,32 @@ namespace Diplomski.Web.Controllers
             selectItems = storeList.Select(x => new SelectListItem(x.Name, x.Id.ToString())).ToList();
 
             ViewBag.Stores = selectItems;
+        }
+
+        /// <summary>
+        /// Get the list by with the filter resuslt can be sorted.
+        /// </summary>
+        private void GetSortList()
+        {
+            List<SelectListItem> selectItems = new List<SelectListItem>();
+            selectItems.Add(new SelectListItem("Potražnja", "Demand", true));
+            selectItems.Add(new SelectListItem("Izlaz", "Exit"));
+            selectItems.Add(new SelectListItem("Cijena", "Price"));
+            selectItems.Add(new SelectListItem("Nabavna cijena", "BuyPrice"));
+
+            ViewBag.SortList = selectItems;
+        }
+
+        /// <summary>
+        /// Get the list by with the filter resuslt can be ordered.
+        /// </summary>
+        private void GetOrderList()
+        {
+            List<SelectListItem> selectItems = new List<SelectListItem>();
+            selectItems.Add(new SelectListItem("Gornje", "false", true));
+            selectItems.Add(new SelectListItem("Donje", "true"));
+
+            ViewBag.OrderList = selectItems;
         }
 
         /// <summary>

@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Diplomski.Core.Services.Implementations
@@ -60,45 +61,88 @@ namespace Diplomski.Core.Services.Implementations
             List<string> labelList = new List<string>();
             string labelTitle = "";
 
-
-            if (request.BuyPriceShow == true)
+            switch (request.ShowSort)
             {
-                articleList = articleResultList.OrderByDescending(x => x.BuyPrice)
-                                               .Take(request.Show)
-                                               .ToList();
+                case "Exit":
+                    {
+                        if (request.OrderReverse == false)
+                        {
+                            articleList = articleResultList.OrderByDescending(x => x.Exit)
+                                                           .Take(request.Show)
+                                                           .ToList();
+                        }
+                        else
+                        {
+                            articleList = articleResultList.OrderBy(x => x.Exit)
+                                                           .Take(request.Show)
+                                                           .ToList();
+                        }
 
-                numberList = articleList.Select(x => (double)x.BuyPrice).ToList();
-                labelTitle = "Nabavna cijena";
-            }
+                        numberList = articleList.Select(x => (double)x.Exit).ToList();
+                        labelTitle = "Izlaz";
 
-            if (request.DemandShow == true)
-            {
-                articleList = articleResultList.OrderByDescending(x => x.Demand)
-                                               .Take(request.Show)
-                                               .ToList();
+                        break;
+                    }
+                case "Demand":
+                    {
+                        if (request.OrderReverse == false)
+                        {
+                            articleList = articleResultList.OrderByDescending(x => x.Demand)
+                                                           .Take(request.Show)
+                                                           .ToList();
+                        }
+                        else
+                        {
+                            articleList = articleResultList.OrderBy(x => x.Demand)
+                                                           .Take(request.Show)
+                                                           .ToList();
+                        }
 
-                numberList = articleList.Select(x => (double)x.Demand).ToList();
-                labelTitle = "Potražnja";
-            }
+                        numberList = articleList.Select(x => (double)x.Demand).ToList();
+                        labelTitle = "Potražnja";
 
-            if (request.ExitShow == true)
-            {
-                articleList = articleResultList.OrderByDescending(x => x.Exit)
-                                               .Take(request.Show)
-                                               .ToList();
+                        break;
+                    }
+                case "Price":
+                    {
+                        if (request.OrderReverse == false)
+                        {
+                            articleList = articleResultList.OrderByDescending(x => x.Price)
+                                                           .Take(request.Show)
+                                                           .ToList();
+                        }
+                        else
+                        {
+                            articleList = articleResultList.OrderBy(x => x.Price)
+                                                           .Take(request.Show)
+                                                           .ToList();
+                        }
 
-                numberList = articleList.Select(x => (double)x.Exit).ToList();
-                labelTitle = "Izlaz";
-            }
+                        numberList = articleList.Select(x => (double)x.Price).ToList();
+                        labelTitle = "Cijena";
 
-            if (request.PriceShow == true)
-            {
-                articleList = articleResultList.OrderByDescending(x => x.Price)
-                                               .Take(request.Show)
-                                               .ToList();
+                        break;
+                    }
+                case "BuyPrice":
+                    {
+                        if (request.OrderReverse == false)
+                        {
+                            articleList = articleResultList.OrderByDescending(x => x.BuyPrice)
+                                                           .Take(request.Show)
+                                                           .ToList();
+                        }
+                        else
+                        {
+                            articleList = articleResultList.OrderBy(x => x.BuyPrice)
+                                                           .Take(request.Show)
+                                                           .ToList();
+                        }
 
-                numberList = articleList.Select(x => (double)x.Price).ToList();
-                labelTitle = "Cijena";
+                        numberList = articleList.Select(x => (double)x.BuyPrice).ToList();
+                        labelTitle = "Nabavna cijena";
+
+                        break;
+                    }
             }
 
             labelList = articleList.Select(x => x.Name).ToList();

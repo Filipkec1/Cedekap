@@ -85,25 +85,21 @@ namespace Diplomski.Core.Requests
         public decimal? BuyPriceEqual { get; set; }
         public decimal? BuyPriceMax { get; set; }
         public decimal? BuyPriceMin { get; set; }
-        public bool BuyPriceShow { get; set; }
         public string Code { get; set; }
         public string CodeSupplier { get; set; }
         public decimal? DemandEqual { get; set; }
         public decimal? DemandMax { get; set; }
         public decimal? DemandMin { get; set; }
-        public bool DemandShow { get; set; }
         public DateTime? ExactMonth { get; set; }
         public decimal? ExitEqual { get; set; }
         public decimal? ExitMax { get; set; }
         public decimal? ExitMin { get; set; }
-        public bool ExitShow { get; set; }
         public string Name { get; set; }
         public int? Operator { get; set; }
         public string Pay { get; set; }
         public decimal? PriceEqual { get; set; }
         public decimal? PriceMax { get; set; }
         public decimal? PriceMin { get; set; }
-        public bool PriceShow { get; set; }
         public decimal? RebateEqual { get; set; }
         public decimal? RebateMax { get; set; }
         public decimal? RebateMin { get; set; }
@@ -124,6 +120,8 @@ namespace Diplomski.Core.Requests
             }
         }
 
+        public string ShowSort { get; set; }
+        public bool OrderReverse { get; set; }
         public string StoreId { get; set; }
         public double? TariffEqual { get; set; }
         public bool TopShow { get; set; }
