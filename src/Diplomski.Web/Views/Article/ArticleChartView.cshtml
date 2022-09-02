@@ -5,12 +5,8 @@
 <div class="row">
     <div class="col-lg-12">
         <div style="margin-top: 20px" class="bg-white text-dark p-3 mb-3 text-center shadow-lg">
-            <partial name="_ArticleFilter" model="new ArticleFilterRequest()" />
+            <partial name="_ArticleFilter" model="new ArticleShowRequest() { PriceShow = true, TopShow = true }" />
         </div>
-    </div>
-
-    <div class="col-lg-12" id="id_article_sort_div">
-
     </div>
 
     <div class="col-lg-12" id="id_article_chart_div">
@@ -36,57 +32,10 @@
                     url: "@Url.Action("Filter")",
                     method: "POST",
                     data: $("#articleFilter").serializeArray(),
-                    success: OnSuccessFilterResult
+                    success: OnSuccessSortResult
                 });
             })
         });
-
-        /**
-         * When the filter button is clicked for the first time create the sort partial view.
-         * On subsequent click do nothing.
-         */
-        function OnSuccessFilterResult(){
-
-            if (! !!document.getElementById("id_article_sort")) {
-                var url = "@Url.Action("Sort")";
-                $("#id_article_sort_div").load(url, null);
-            }
-        }
-
-        /**
-         * Get the data from "#articleFilter" form and convert it to a json.
-         * After that make AJAX call to show sorted Articles.
-         */
-        $("#id_article_sort_div").on("click", "#confirmArticleSort", function (event) {
-
-            var sortData = ObjectifyForms();
-            $.ajax({
-                url: "@Url.Action("Sort")",
-                data: sortData,
-                method: 'POST',
-                success: OnSuccessSortResult
-            })
-        });
-
-        /**
-         * Get object from serialize forms.
-         */
-        function ObjectifyForms() {
-
-            var articleSortObject = $("#articleSort").serializeArray();
-            var articleFilterObject = $("#articleFilter").serializeArray();
-
-            var returnArray = {};
-            for (var i = 0; i < articleSortObject.length; i++) {
-                returnArray[articleSortObject[i]['name']] = articleSortObject[i]['value'];
-            }
-
-            for (var i = 0; i < articleFilterObject.length; i++) {
-                returnArray[articleFilterObject[i]['name']] = articleFilterObject[i]['value'];
-            }
-
-            return returnArray;
-        }
 
         /**
         * When the sort button is clicked for the first time create the chart partial view.
@@ -115,5 +64,20 @@
             var urlLsit = "@Url.Action("List")";
             $("#id_article_list_div").load(urlLsit, { "jsonString": data[3] })
         }
+
+        $(".max").on('input', function() {
+            $(this).siblings(".equal").val(null);
+        });
+        $(".min").on('input', function () {
+            $(this).siblings(".equal").val(null);
+        });
+        $(".equal").on('input', function () {
+            $(this).siblings(".min").val(null);
+            $(this).siblings(".max").val(null);
+        });
+
+
+
+
     </script>
 }

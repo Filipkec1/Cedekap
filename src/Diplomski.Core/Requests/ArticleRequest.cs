@@ -13,77 +13,15 @@ namespace Diplomski.Core.Requests
         public Guid StoreId { get; set; }
     }
 
-    public class ArticleCombineRequest
-    {
-        public bool BuyPriceShow { get; set; }
-        public bool DemandShow { get; set; }
-        public bool ExitShow { get; set; }
-        public bool PriceShow { get; set; }
-        public int Show { get; set; }
-        public DateTime? AfterMonth { get; set; }
-        public DateTime? BeforeMonth { get; set; }
-        public decimal? BuyPriceEqual { get; set; }
-        public decimal? BuyPriceMax { get; set; }
-        public decimal? BuyPriceMin { get; set; }
-        public string Code { get; set; }
-        public string CodeSupplier { get; set; }
-        public decimal? DemandEqual { get; set; }
-        public decimal? DemandMax { get; set; }
-        public decimal? DemandMin { get; set; }
-        public DateTime? ExactMonth { get; set; }
-        public decimal? ExitEqual { get; set; }
-        public decimal? ExitMax { get; set; }
-        public decimal? ExitMin { get; set; }
-        public string Name { get; set; }
-        public int? Operator { get; set; }
-        public string Pay { get; set; }
-        public decimal? PriceEqual { get; set; }
-        public decimal? PriceMax { get; set; }
-        public decimal? PriceMin { get; set; }
-        public decimal? RebateEqual { get; set; }
-        public decimal? RebateMax { get; set; }
-        public decimal? RebateMin { get; set; }
-        //public List<string> StoreIdList { get; set; }
-        public string StoreId { get; set; }
-        public double? TariffEqual { get; set; }
-    }
-
     /// <summary>
     /// Defines Article filter request.
     /// </summary>
     public class ArticleFilterRequest
     {
-        public DateTime? AfterMonth { get; set; }
-        public DateTime? BeforeMonth { get; set; }
-        public decimal? BuyPriceEqual { get; set; }
-        public decimal? BuyPriceMax { get; set; }
-        public decimal? BuyPriceMin { get; set; }
-        public string Code { get; set; }
-        public string CodeSupplier { get; set; }
-        public decimal? DemandEqual { get; set; }
-        public decimal? DemandMax { get; set; }
-        public decimal? DemandMin { get; set; }
-        public DateTime? ExactMonth { get; set; }
-        public decimal? ExitEqual { get; set; }
-        public decimal? ExitMax { get; set; }
-        public decimal? ExitMin { get; set; }
-        public string Name { get; set; }
-        public int? Operator { get; set; }
-        public string Pay { get; set; }
-        public decimal? PriceEqual { get; set; }
-        public decimal? PriceMax { get; set; }
-        public decimal? PriceMin { get; set; }
-        public decimal? RebateEqual { get; set; }
-        public decimal? RebateMax { get; set; }
-        public decimal? RebateMin { get; set; }
-        //public List<string> StoreIdList { get; set; }
-        public string StoreId { get; set; }
-        public double? TariffEqual { get; set; }
-
         public ArticleFilterRequest()
         { }
 
-        public ArticleFilterRequest(ArticleCombineRequest articleCombine)
+        public ArticleFilterRequest(ArticleShowRequest articleCombine)
         {
             this.AfterMonth = articleCombine.AfterMonth;
             this.BeforeMonth = articleCombine.BeforeMonth;
@@ -111,20 +49,64 @@ namespace Diplomski.Core.Requests
             this.StoreId = articleCombine.StoreId;
             this.TariffEqual = articleCombine.TariffEqual;
         }
+
+        public DateTime? AfterMonth { get; set; }
+        public DateTime? BeforeMonth { get; set; }
+        public decimal? BuyPriceEqual { get; set; }
+        public decimal? BuyPriceMax { get; set; }
+        public decimal? BuyPriceMin { get; set; }
+        public string Code { get; set; }
+        public string CodeSupplier { get; set; }
+        public decimal? DemandEqual { get; set; }
+        public decimal? DemandMax { get; set; }
+        public decimal? DemandMin { get; set; }
+        public DateTime? ExactMonth { get; set; }
+        public decimal? ExitEqual { get; set; }
+        public decimal? ExitMax { get; set; }
+        public decimal? ExitMin { get; set; }
+        public string Name { get; set; }
+        public int? Operator { get; set; }
+        public string Pay { get; set; }
+        public decimal? PriceEqual { get; set; }
+        public decimal? PriceMax { get; set; }
+        public decimal? PriceMin { get; set; }
+        public decimal? RebateEqual { get; set; }
+        public decimal? RebateMax { get; set; }
+        public decimal? RebateMin { get; set; }
+        public string StoreId { get; set; }
+        public double? TariffEqual { get; set; }
     }
 
-    /// <summary>
-    ///  Defines Article show request.
-    /// </summary>
     public class ArticleShowRequest
     {
+        public DateTime? AfterMonth { get; set; }
+        public DateTime? BeforeMonth { get; set; }
+        public bool BottomShow { get; set; }
+        public decimal? BuyPriceEqual { get; set; }
+        public decimal? BuyPriceMax { get; set; }
+        public decimal? BuyPriceMin { get; set; }
         public bool BuyPriceShow { get; set; }
-
+        public string Code { get; set; }
+        public string CodeSupplier { get; set; }
+        public decimal? DemandEqual { get; set; }
+        public decimal? DemandMax { get; set; }
+        public decimal? DemandMin { get; set; }
         public bool DemandShow { get; set; }
-
+        public DateTime? ExactMonth { get; set; }
+        public decimal? ExitEqual { get; set; }
+        public decimal? ExitMax { get; set; }
+        public decimal? ExitMin { get; set; }
         public bool ExitShow { get; set; }
-
+        public string Name { get; set; }
+        public int? Operator { get; set; }
+        public string Pay { get; set; }
+        public decimal? PriceEqual { get; set; }
+        public decimal? PriceMax { get; set; }
+        public decimal? PriceMin { get; set; }
         public bool PriceShow { get; set; }
+        public decimal? RebateEqual { get; set; }
+        public decimal? RebateMax { get; set; }
+        public decimal? RebateMin { get; set; }
 
         private int show = 10;
         public int Show
@@ -141,5 +123,9 @@ namespace Diplomski.Core.Requests
                 }
             }
         }
+
+        public string StoreId { get; set; }
+        public double? TariffEqual { get; set; }
+        public bool TopShow { get; set; }
     }
 }

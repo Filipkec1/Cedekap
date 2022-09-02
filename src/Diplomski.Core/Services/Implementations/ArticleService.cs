@@ -46,25 +46,13 @@ namespace Diplomski.Core.Services.Implementations
         }
 
         /// <inheritdoc />
-        public async Task<ArticleResult> GetById(Guid id)
-        {
-            Article article = await unitOfWork.Article.GetById(id);
-            if (article is null)
-            {
-                throw new EntityNotFoundException(typeof(Article), id);
-            }
-
-            return new ArticleResult(article);
-        }
-
-        /// <inheritdoc />
         public async Task<IEnumerable<Store>> GetStoreList()
         {
             return await unitOfWork.Store.GetAll();
         }
 
         /// <inheritdoc />
-        public IEnumerable<object> SortArticle(ArticleCombineRequest request, IEnumerable<ArticleResult> articleResultList)
+        public IEnumerable<object> SortArticle(ArticleShowRequest request, IEnumerable<ArticleResult> articleResultList)
         {
             List<object> data = new List<object>();
             List<ArticleResult> articleList = new List<ArticleResult>();

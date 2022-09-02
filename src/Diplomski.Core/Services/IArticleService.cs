@@ -34,14 +34,7 @@ namespace Diplomski.Core.Services
         /// <param name="request">Parameters by witch the <paramref name="articleResultList"/> will be sorted.</param>
         /// <param name="articleResultList">List of <see cref=ArticleResult""/> that are going to be sorted.</param>
         /// <returns>List of sorted <see cref="ArticleResult"/> from <paramref name="articleResultList"/>.</returns>
-        IEnumerable<object> SortArticle(ArticleCombineRequest request, IEnumerable<ArticleResult> articleResultList);
-
-        /// <summary>
-        /// Gets Article entity by id.
-        /// </summary>
-        /// <param name="id">User database id.</param>
-        /// <returns>Returns <see cref="ArticleResult"/></returns>
-        Task<ArticleResult> GetById(Guid id);
+        IEnumerable<object> SortArticle(ArticleShowRequest request, IEnumerable<ArticleResult> articleResultList);
 
         /// <summary>
         /// Get all <see cref="Store"/>s from the database.

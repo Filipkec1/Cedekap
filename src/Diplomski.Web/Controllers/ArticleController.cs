@@ -54,18 +54,19 @@ namespace Diplomski.Web.Controllers
         }
 
         /// <summary>
-        /// Filter all <see cref="Article"/>s from database using <paramref name="request"/>.
+        /// Filter and sort all <see cref="Article"/>s from database using <paramref name="request"/>.
         /// </summary>
-        /// <param name="request">Parameters by with <see cref="Article"/>s are filtered.</param>
+        /// <param name="request">Parameters by with <see cref="Article"/>s are filtered and sorted.</param>
         /// <returns>Http status code <see cref="HttpStatusCode.OK"/>.</returns>
         [HttpPost]
         [Route("Filter")]
-        public async Task<IActionResult> FilterArticle([FromForm] ArticleFilterRequest request)
+        public async Task<IActionResult> FilterArticle([FromForm] ArticleShowRequest request)
         {
-            string requestJson = JsonSerializer.Serialize(request);
-            await GetArticleList(requestJson);
+            ArticleFilterRequest filterRequest = new ArticleFilterRequest(request);
+            IEnumerable<ArticleResult> articleResultList = await GetArticleList(filterRequest);
 
-            return Ok();
+            IEnumerable<object> data = articleService.SortArticle(request, articleResultList);
+            return Ok(data);
         }
 
         /// <summary>
@@ -78,37 +79,6 @@ namespace Diplomski.Web.Controllers
             return PartialView("_ArticleChart");
         }
 
-        /// <summary>
-        /// Get for the first time the "_ArticleSort" PartialView.
-        /// </summary>
-        [HttpGet]
-        [Route("Sort")]
-        public IActionResult GetArticleSortPartialView()
-        {
-            ArticleShowRequest defaultRequest = new ArticleShowRequest()
-            {
-                PriceShow = true
-            };
-
-            return PartialView("_ArticleSort", defaultRequest);
-        }
-
-        /// <summary>
-        /// Sort the filtered <see cref="Article"/>s from <see cref="FilterArticle"/>
-        /// </summary>
-        /// <param name="request">Parameters by with <see cref="Article"/>s are sorted.</param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("Sort")]
-        public async Task<IActionResult> SortArticle([FromForm] ArticleCombineRequest request)
-        {
-            ArticleFilterRequest filterRequest = new ArticleFilterRequest(request);
-            IEnumerable<ArticleResult> articleResultList = await GetArticleList(JsonSerializer.Serialize(filterRequest));
-
-            IEnumerable<object> data = articleService.SortArticle(request, articleResultList);
-            return Ok(data);
-        }
-
         [HttpPost]
         [Route("List")]
         public IActionResult ListArticles(string jsonString)
@@ -116,7 +86,6 @@ namespace Diplomski.Web.Controllers
             List<ArticleResult> articleResultList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ArticleResult>>(jsonString);
             return PartialView("_ArticleList", articleResultList);
         }
-
 
         /// <summary>
         /// Read selected dbf file and convert the data to objects that are saved to the database.
@@ -152,13 +121,13 @@ namespace Diplomski.Web.Controllers
         /// </summary>
         /// <param name="requestJson"></param>
         /// <returns>A list of <see cref="ArticleResult"/>s.</returns>
-        private async Task<IEnumerable<ArticleResult>> GetArticleList(string requestJson)
+        private async Task<IEnumerable<ArticleResult>> GetArticleList(ArticleFilterRequest request)
         {
-            //If request is not cached get it from the database and then cache it.
-            if (!cache.TryGetValue(requestJson, out IEnumerable<ArticleResult> articleList))
-            {
-                ArticleFilterRequest? request = JsonSerializer.Deserialize<ArticleFilterRequest>(requestJson);
+            string requestJson = JsonSerializer.Serialize(request);
 
+            //If request is not cached get it from the database and then cache it.
+            if (!cache.TryGetValue(request, out IEnumerable<ArticleResult> articleList))
+            {
                 articleList = await articleService.FilterArticle(request);
 
                 var cacheEntryOptions = new MemoryCacheEntryOptions()
