@@ -23,7 +23,10 @@ GO
 /* Stores */
 CREATE TABLE [Stores].[Store] (
   [Id] uniqueidentifier PRIMARY KEY DEFAULT (NEWID()),
-  [Name] varchar(3) NOT NULL
+  [Name] varchar(3) NOT NULL,
+  [PostCode] char(5) NOT NULL,
+  [Address] nvarchar(50) NOT NULL,
+  [Place] nvarchar(50) NOT NULL
 )
 GO
 

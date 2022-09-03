@@ -19,7 +19,6 @@ namespace Diplomski.Web.Controllers
     {
         private readonly IArticleService articleService;
         private readonly IMemoryCache cache;
-        private CancellationTokenSource resetCacheToken = new();
 
         /// <summary>
         /// Initialize a new instance of <see cref="ArticleController"/> class.

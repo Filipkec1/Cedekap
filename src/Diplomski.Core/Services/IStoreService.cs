@@ -1,5 +1,4 @@
-﻿using Diplomski.Core.Models.Entities;
-using Diplomski.Core.Requests;
+﻿using Diplomski.Core.Requests;
 using Diplomski.Core.Results;
 using System;
 using System.Collections.Generic;

@@ -1,6 +1,9 @@
 table "Stores.Store" {
   Id uniqueidentifier [pk, default: `NEWID()`]
   Name varchar(3) [not null]
+  PostCode char(5) [not null]
+  Address nvarchar(50) [not null]
+  Place nvarchar(50) [not null]
 }
 
 table "Stores.Article" {

@@ -22,15 +22,6 @@ namespace Diplomski.Infrastructure.EfRepository
         { }
 
         /// <inheritdoc />
-        public async Task<IEnumerable<string>> GetAllStoreNames()
-        {
-            return await GetTableQueryable()
-                        .AsNoTracking()
-                        .Select(s => s.Name)
-                        .ToListAsync();
-        }
-
-        /// <inheritdoc />
         public async override Task<Store> GetById(Guid id)
         {
             return await GetTableQueryable().FirstOrDefaultAsync(e => e.Id == id);

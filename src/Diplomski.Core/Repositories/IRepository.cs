@@ -58,14 +58,4 @@ namespace Diplomski.Core.Repositories
         /// <param name="entities">Entities for deletion</param>
         void DeleteRange(IEnumerable<TEntity> entities);
     }
-
-    public interface INamedObjectsRepository<TEntity, TPrimaryKey> : IRepository<TEntity, TPrimaryKey> where TEntity : class, IHasName
-    {
-        /// <summary>
-        /// Gets an entity by its name <paramref name="entityName"/>.
-        /// </summary>
-        /// <param name="entityName">Entity name</param>
-        /// <returns>Entity with given name.</returns>
-        Task<TEntity> GetByName(string name);
-    }
 }

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<StoreResult>
+
+<div class="row" id="id_store_list">
+    <div class="col-lg-12">
+        <div style="margin-top: 20px" class="bg-white text-dark p-3 mb-3 text-center shadow-lg">
+            <table style="margin-top: 20px;" class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>Naziv</th>
+                        <th>Mjesto</th>
+                        <th>Adresa</th>
+                        <th>Poštanski broj</th>
+                        <th> </th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (StoreResult store in Model)
+                    {
+                        <tr>
+                            <td>@store.Name</td>
+                            <td>@store.Place</td>
+                            <td>@store.Address</td>
+                            <td>@store.PostCode</td>
+                            <td>
+                                <button type="button" class="btn btn-primary EditButton" data-url="@Url.Action("Edit","Store")/@store.Id">Uredi trgovinu</button>
+                            </td>
+                            <td>
+                                <button type="submit" class="btn btn-danger DeleteButton" data-url="@Url.Action("Delete","Store")/@store.Id">
+                                    Obriši trgovinu
+                                </button>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

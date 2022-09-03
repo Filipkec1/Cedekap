@@ -8,6 +8,9 @@ namespace Diplomski.Core.Requests
     public class StoreRequest
     {
         public string Name { get; set; }
+        public string PostCode { get; set; }
+        public string Address { get; set; }
+
     }
 
     /// <summary>

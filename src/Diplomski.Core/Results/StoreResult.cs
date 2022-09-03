@@ -10,6 +10,9 @@ namespace Diplomski.Core.Results
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public string PostCode { get; set; }
+        public string Address { get; set; }
+        public string Place { get; set; }
 
 
         /// <summary>
@@ -18,8 +21,11 @@ namespace Diplomski.Core.Results
         /// <param name="store">Store.</param>
         public StoreResult(Store store)
         {
-            Id = store.Id;
-            Name = store.Name; 
+            this.Id = store.Id;
+            this.Name = store.Name; 
+            this.PostCode = store.PostCode; 
+            this.Address = store.Address; 
+            this.Place = store.Place; 
         }
     }
 }
