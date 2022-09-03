@@ -108,20 +108,20 @@
         <div class="col-lg-12 border-top topSpace">
         </div>
 
-        <div class="col-lg-12 row topSpace">
+        <div class="col-lg-12 row topSpace form-group">
             <div class="col-lg-4 centerElements">
                 <label>Sortirati po</label>
                 <select asp-for="ShowSort" asp-items="ViewBag.SortList" style="width:30%; margin:0px 5px">
                 </select>
             </div>
 
-            <div class="col-lg-4 centerElements">
+            <div class="col-lg-4 centerElements form-group">
                 <label>Poredati</label>
                 <select asp-for="OrderReverse" asp-items="ViewBag.OrderList" style="width:30%; margin:0px 5px">
                 </select>
             </div>
 
-            <div class="col-lg-4 centerElements">
+            <div class="col-lg-4 centerElements form-group">
                 <label>Prikazati</label>
                 <input id="id_operator" asp-for="Show" class="form-control" type="text" style="text-align: center; width:30%; margin:0px 5px" />
             </div>

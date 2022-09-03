@@ -105,7 +105,7 @@ namespace Diplomski.Web.Controllers
             List<Article> textData = dbfParser.Read(request.StoreId);
             await articleService.AddDbfData(request.StoreId, firstDayOfMonth, textData);
 
-            return Ok($"File {request.DbfFile.FileName} parsed and uploaded.");
+            return Ok(request.DbfFile.FileName);
         }
 
         /// <summary>

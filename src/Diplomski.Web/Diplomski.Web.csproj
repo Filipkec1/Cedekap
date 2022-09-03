@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Views\Article\ArticleUploadView.cshtml.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Views\Article\ArticleUploadView.cshtml.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Diplomski.Core\Diplomski.Core.csproj" />
     <ProjectReference Include="..\Diplomski.Infrastructure\Diplomski.Infrastructure.csproj" />
   </ItemGroup>
@@ -15,6 +23,7 @@
     <Folder Include="Extensions\" />
     <Folder Include="Middlewares\" />
     <Folder Include="wwwroot\img\" />
+    <Folder Include="wwwroot\lib\chart\" />
   </ItemGroup>
 
   <ItemGroup>
