@@ -1,4 +1,5 @@
-﻿using Diplomski.Core.Requests;
+﻿using Diplomski.Core.Models.Entities;
+using Diplomski.Core.Requests;
 using Diplomski.Core.Results;
 using System;
 using System.Collections.Generic;
@@ -25,17 +26,11 @@ namespace Diplomski.Core.Services
         Task<StoreResult> GetById(Guid id);
 
         /// <summary>
-        /// Creates new Store in database.
+        /// Create new <see cref="Store"/> if <paramref name="request"/> Id is empty.
+        /// Update <see cref="Store"/> if <paramref name="request"/> Id has value.
         /// </summary>
         /// <param name="request"><see cref="StoreCreateUpdateRequest"/></param>
-        /// <returns>Returns <see cref="StoreResult"/></returns>
-        Task<StoreResult> Create(StoreCreateUpdateRequest request);
-
-        /// <summary>
-        /// Updates Store data.
-        /// </summary>
-        /// <param name="request"><see cref="StoreCreateUpdateRequest"/></param>
-        Task Update(StoreCreateUpdateRequest request);
+        Task CreateOrUpdate(StoreCreateUpdateRequest request);
 
         /// <summary>
         /// Deletes Store from database.

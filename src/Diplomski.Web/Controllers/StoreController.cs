@@ -27,17 +27,52 @@ namespace Diplomski.Web.Controllers
         /// Get the modal for creating a new <see cref="Store"/>
         /// </summary>
         [HttpGet]
-        [Route("Create")]
-        public IActionResult Create()
+        [Route("CreateOrEdit")]
+        public IActionResult CreateOrEdit()
         {
             return PartialView("_CreateOrEdit");
         }
 
         [HttpPost]
-        [Route("Create")]
-        public async Task<IActionResult> Create(StoreCreateUpdateRequest request)
+        [Route("CreateOrEdit")]
+        public async Task<IActionResult> CreateOrEdit(StoreCreateUpdateRequest request)
         {
-            await storeService.Create(request);
+            await storeService.CreateOrUpdate(request);
+
+            IEnumerable<StoreResult> storeResultList = await GetStoreResultList();
+            return PartialView("_StoreList", storeResultList);
+        }
+
+        //[HttpGet]
+        //[Route("Edit")]
+        //public async Task<IActionResult> Edit(string id)
+        //{
+        //    Guid guid = Guid.Parse(id);
+
+        //    StoreResult store = await storeService.GetById(guid);
+        //    return PartialView("_CreateOrEdit", store);
+        //}
+
+        [HttpGet]
+        [Route("Edit")]
+        public async Task<IActionResult> Edit(string? id)
+        {
+            //Guid guid = Guid.Parse(id);
+
+            //StoreResult store = await storeService.GetById(guid);
+            //return PartialView("_CreateOrEdit", store);
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("Edit")]
+        public async Task<IActionResult> Edit(Guid? id)
+        {
+            //Guid guid = Guid.Parse(id);
+
+            //StoreResult store = await storeService.GetById(guid);
+            //return PartialView("_CreateOrEdit", store);
+
             return Ok();
         }
 
@@ -48,9 +83,19 @@ namespace Diplomski.Web.Controllers
         [Route("List")]
         public async Task<IActionResult> GetStoreList()
         {
+            IEnumerable<StoreResult> storeResultList = await GetStoreResultList();
+            return PartialView("_StoreList", storeResultList);
+        }
+
+        /// <summary>
+        /// Get all <see cref="Store"/>s from the database and order them by name.
+        /// </summary>
+        /// <returns>A list of <see cref="StoreResult"/>s.</returns>
+        private async Task<IEnumerable<StoreResult>> GetStoreResultList()
+        {
             IEnumerable<StoreResult> storeResultList = await storeService.GetAll();
             storeResultList = storeResultList.OrderBy(x => int.Parse(x.Name.Remove(0, 1)));
-            return PartialView("_StoreList", storeResultList);
+            return storeResultList; 
         }
 
         public IActionResult Index()

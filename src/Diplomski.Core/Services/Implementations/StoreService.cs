@@ -23,27 +23,24 @@ namespace Diplomski.Core.Services.Implementations
         { }
 
         /// <inheritdoc />
-        public async Task<StoreResult> Create(StoreCreateUpdateRequest request)
+        public async Task CreateOrUpdate(StoreCreateUpdateRequest request)
         {
-            Store newStore = new Store()
+            //Check if request has a non empty Guid
+            if (request.Id == Guid.Empty)
             {
-                Name = request.Name,
-                PostCode = request.PostCode,
-                Address = request.Address,
-                Place = request.Place,
-            };
-
-            await unitOfWork.Store.Add(newStore);
-            await unitOfWork.Commit();
-
-            return new StoreResult(newStore);
+                await Create(request);
+            }
+            else
+            {
+                await Update(request);
+            }
         }
 
         /// <inheritdoc />
         public async Task Delete(Guid id)
         {
             Store store = await unitOfWork.Store.GetById(id);
-            if(store is null)
+            if (store is null)
             {
                 throw new EntityNotFoundException(typeof(Store), id);
             }
@@ -72,7 +69,21 @@ namespace Diplomski.Core.Services.Implementations
         }
 
         /// <inheritdoc />
-        public async Task Update(StoreCreateUpdateRequest request)
+        private async Task Create(StoreCreateUpdateRequest request)
+        {
+            Store newStore = new Store()
+            {
+                Name = request.Name,
+                PostCode = request.PostCode,
+                Address = request.Address,
+                Place = request.Place,
+            };
+
+            await unitOfWork.Store.Add(newStore);
+            await unitOfWork.Commit();
+        }
+        /// <inheritdoc />
+        private async Task Update(StoreCreateUpdateRequest request)
         {
             Store store = await unitOfWork.Store.GetById(request.Id);
             if (store is null)

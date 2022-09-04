@@ -35,7 +35,16 @@
          */
         $('#id_store_new_store').click(function () {
 
-            var url = "@Url.Action("Create")";
+            var url = "@Url.Action("CreateOrEdit")";
+
+            $("#id_store_modal_div").load(url, function () {
+                $("#id_store_modal").modal("show");
+            });
+        });
+
+        $("#id_store_list_div").on("click", ".EditButton", function (event) {
+
+            var url = $(this).data("url");
 
             $("#id_store_modal_div").load(url, function () {
                 $("#id_store_modal").modal("show");
@@ -60,6 +69,23 @@
         }
 
 
+        /**
+         * Send form data, reset form and get new Store list.
+         */
+        $("#id_store_modal_div").on("click", "#id_store_save", function (event) {
+
+            $("#id_store_list").replaceWith(
+                $.ajax({
+                    url: "@Url.Action("CreateOrEdit")",
+                    method: "POST",
+                    data: $("#id_store_modal_form").serializeArray(),
+                    success: function (html) {
+                        CloseModalResetForm();
+                        $("#id_store_list_div").html(html);
+                    }
+                })
+            );
+        });
 
     </script>
 }
