@@ -1,4 +1,6 @@
-﻿using Diplomski.Core.Results;
+﻿using Diplomski.Core.Models.Entities;
+using Diplomski.Core.Requests;
+using Diplomski.Core.Results;
 using Diplomski.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,6 +24,24 @@ namespace Diplomski.Web.Controllers
         }
 
         /// <summary>
+        /// Get the modal for creating a new <see cref="Store"/>
+        /// </summary>
+        [HttpGet]
+        [Route("Create")]
+        public IActionResult Create()
+        {
+            return PartialView("_CreateOrEdit");
+        }
+
+        [HttpPost]
+        [Route("Create")]
+        public async Task<IActionResult> Create(StoreCreateUpdateRequest request)
+        {
+            await storeService.Create(request);
+            return Ok();
+        }
+
+        /// <summary>
         /// Get all stores from the database.
         /// </summary>
         [HttpGet]
@@ -29,7 +49,8 @@ namespace Diplomski.Web.Controllers
         public async Task<IActionResult> GetStoreList()
         {
             IEnumerable<StoreResult> storeResultList = await storeService.GetAll();
-            return PartialView("_StoreList", storeResultList.OrderBy(x => int.Parse(x.Name.Remove(0,1))));
+            storeResultList = storeResultList.OrderBy(x => int.Parse(x.Name.Remove(0, 1)));
+            return PartialView("_StoreList", storeResultList);
         }
 
         public IActionResult Index()

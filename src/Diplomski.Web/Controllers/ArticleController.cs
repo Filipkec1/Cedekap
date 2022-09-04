@@ -80,6 +80,10 @@ namespace Diplomski.Web.Controllers
             return PartialView("_ArticleChart");
         }
 
+        /// <summary>
+        /// Show all <see cref="Article"/>s that are used in <see cref="GetArticleChartPartialView"/> in a list.
+        /// </summary>
+        /// <param name="jsonString">List of all the <see cref="Article"/>s that are going to be shown in the list.</param>
         [HttpPost]
         [Route("List")]
         public IActionResult ListArticles(string jsonString)
@@ -118,9 +122,10 @@ namespace Diplomski.Web.Controllers
         }
 
         /// <summary>
-        ///
+        /// Get the <see cref="Article"/>s from the database.
+        /// If the <paramref name="request"/> is already used in the last 10 min get it from the cache.
         /// </summary>
-        /// <param name="requestJson"></param>
+        /// <param name="request">Parameters by witch <see cref="Article"/>s are cached.</param>
         /// <returns>A list of <see cref="ArticleResult"/>s.</returns>
         private async Task<IEnumerable<ArticleResult>> GetArticleList(ArticleFilterRequest request)
         {
@@ -149,6 +154,7 @@ namespace Diplomski.Web.Controllers
         private async Task GetStores()
         {
             IEnumerable<Store> storeList = await articleService.GetStoreList();
+            storeList = storeList.OrderBy(x => int.Parse(x.Name.Remove(0, 1)));
 
             List<SelectListItem> selectItems = new List<SelectListItem>();
             selectItems = storeList.Select(x => new SelectListItem(x.Name, x.Id.ToString())).ToList();

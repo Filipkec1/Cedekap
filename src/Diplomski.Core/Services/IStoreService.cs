@@ -27,15 +27,15 @@ namespace Diplomski.Core.Services
         /// <summary>
         /// Creates new Store in database.
         /// </summary>
-        /// <param name="request"><see cref="StoreCreateRequest"/></param>
+        /// <param name="request"><see cref="StoreCreateUpdateRequest"/></param>
         /// <returns>Returns <see cref="StoreResult"/></returns>
-        Task<StoreResult> Create(StoreCreateRequest request);
+        Task<StoreResult> Create(StoreCreateUpdateRequest request);
 
         /// <summary>
         /// Updates Store data.
         /// </summary>
-        /// <param name="request"><see cref="StoreUpdateRequest"/></param>
-        Task Update(StoreUpdateRequest request);
+        /// <param name="request"><see cref="StoreCreateUpdateRequest"/></param>
+        Task Update(StoreCreateUpdateRequest request);
 
         /// <summary>
         /// Deletes Store from database.

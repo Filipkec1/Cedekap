@@ -23,11 +23,14 @@ namespace Diplomski.Core.Services.Implementations
         { }
 
         /// <inheritdoc />
-        public async Task<StoreResult> Create(StoreCreateRequest request)
+        public async Task<StoreResult> Create(StoreCreateUpdateRequest request)
         {
             Store newStore = new Store()
             {
-                Name = request.Name
+                Name = request.Name,
+                PostCode = request.PostCode,
+                Address = request.Address,
+                Place = request.Place,
             };
 
             await unitOfWork.Store.Add(newStore);
@@ -69,7 +72,7 @@ namespace Diplomski.Core.Services.Implementations
         }
 
         /// <inheritdoc />
-        public async Task Update(StoreUpdateRequest request)
+        public async Task Update(StoreCreateUpdateRequest request)
         {
             Store store = await unitOfWork.Store.GetById(request.Id);
             if (store is null)

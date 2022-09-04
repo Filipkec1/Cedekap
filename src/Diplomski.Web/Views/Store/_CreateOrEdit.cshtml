@@ -1,5 +1,57 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model StoreCreateUpdateRequest
+<!-- Modal -->
+<div class="modal fade" id="id_store_modal" role="dialog">
+    <div class="modal-dialog row">
+
+        <!-- Modal content-->
+        <div class="modal-content col-lg-6">
+            <div class="modal-header">
+                @if (Model == null)
+                {
+                    <h4 class="modal-title">Nova trgovinu</h4>
+                }
+                else
+                {
+                    <h4 class="modal-title">Uredi trgovinu</h4>
+                }
+            </div>
+
+            <div class="modal-body">
+                <form id="id_store_modal_form">
+
+                    <div class="form-group">
+                        <label class="control-label">Naziv trgovine</label>
+                        <input asp-for="Name" class="form-control" id="id_store_name" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Poštanski broj</label>
+                        <input asp-for="PostCode" class="form-control" id="id_store_post_code" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Adresa</label>
+                        <input asp-for="Address" class="form-control" id="id_store_address" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Mjesto</label>
+                        <input asp-for="Place" class="form-control" id="id_store_place" />
+                    </div>
+
+                    <div class="form-group" style="margin-top: 10px">
+                        <input type="submit" value="Pospremi trgovinu" class="btn btn-success" id="id_store_save" />
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="modal-footer" style="margin-top: 10px">
+                <button type="button" id="id_store_modal_close" class="btn btn-info" data-dismiss="modal">
+                    Zatvori
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

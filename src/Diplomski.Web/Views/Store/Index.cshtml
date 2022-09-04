@@ -2,15 +2,23 @@
     ViewData["Title"] = "Trgovine";
 }
 
+<button type="button" id="id_store_new_store" class="btn btn-success" style="margin-top: 20px;">Nova trgovina</button>
+
+<div id="id_store_modal_div">
+
+</div>
+
 <div id="id_store_list_div">
 
 </div>
 
 @section Scripts{
     <script>
+
+        /**
+         * On page load get all the stores.
+         */
         $(document).ready(function () {
-
-
             $("#id_store_list").replaceWith(
                 $.ajax({
                     url: "@Url.Action("List")",
@@ -20,10 +28,36 @@
                     }
                 })
             );
-
         });
 
+        /**
+         * Get create/edit modal
+         */
+        $('#id_store_new_store').click(function () {
 
+            var url = "@Url.Action("Create")";
+
+            $("#id_store_modal_div").load(url, function () {
+                $("#id_store_modal").modal("show");
+            });
+        });
+
+        /**
+         * Close store create/edit modal on click.
+         */
+        $("#id_store_modal_div").on("click", "#id_store_modal_close", function (event) {
+
+            CloseModalResetForm();
+        });
+
+        /**
+         * Close store create/edit modal.
+         * Reset form data in modal.
+         */
+        function CloseModalResetForm() {
+            document.getElementById("id_store_modal_form").reset();
+            $("#id_store_modal").modal("hide");
+        }
 
 
 
