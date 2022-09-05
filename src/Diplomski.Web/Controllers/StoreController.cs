@@ -49,6 +49,16 @@ namespace Diplomski.Web.Controllers
             return PartialView("_StoreList", storeResultList);
         }
 
+        [HttpDelete]
+        [Route("Edit")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            await storeService.Delete(id);
+
+            IEnumerable<StoreResult> storeResultList = await GetStoreResultList();
+            return PartialView("_StoreList", storeResultList);
+        }
+
         /// <summary>
         /// Used for setting the modal that shows <see cref="Store"/> for editing.
         /// </summary>

@@ -23,10 +23,10 @@
                             <td>@store.Address</td>
                             <td>@store.PostCode</td>
                             <td>
-                                <button type="button" class="btn btn-primary EditButton" data-url="@store.Id">Uredi grad</button>
+                                <button type="button" class="btn btn-primary EditButton" data-url="@store.Id">Uredi trgovinu</button>
                             </td>
                             <td>
-                                <button type="submit" class="btn btn-danger DeleteButton" data-url="@Url.Action("Delete","Store")/@store.Id">
+                                <button type="submit" class="btn btn-danger DeleteButton" data-url="@store.Id">
                                     Obriši trgovinu
                                 </button>
                             </td>

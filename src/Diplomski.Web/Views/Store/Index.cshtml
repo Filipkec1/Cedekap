@@ -58,6 +58,28 @@
         });
 
         /**
+         * 
+         */
+        $("#id_store_list_div").on("click", ".DeleteButton", function (event) {
+
+            var url = "@Url.Action("Delete")";
+            var data = $(this).data("url");
+
+            var urlFin = url + "?id=" + data;
+
+            $("#id_store_list").replaceWith(
+                $.ajax({
+                    url: urlFin,
+                    method: "DELETE",
+                    success: function (html) {
+                        $("#id_store_list_div").html(html);
+                    }
+                })
+            );
+
+        });
+
+        /**
          * Close store create/edit modal on click.
          */
         $("#id_store_modal_div").on("click", "#id_store_modal_close", function () {
