@@ -33,6 +33,12 @@ namespace Diplomski.Web.Controllers
             return PartialView("_CreateOrEdit");
         }
 
+        /// <summary>
+        /// Create new <see cref="Store"/> if <paramref name="request"/> Id is empty.
+        /// Update <see cref="Store"/> if <paramref name="request"/> Id has value.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("CreateOrEdit")]
         public async Task<IActionResult> CreateOrEdit(StoreCreateUpdateRequest request)
@@ -43,37 +49,26 @@ namespace Diplomski.Web.Controllers
             return PartialView("_StoreList", storeResultList);
         }
 
-        //[HttpGet]
-        //[Route("Edit")]
-        //public async Task<IActionResult> Edit(string id)
-        //{
-        //    Guid guid = Guid.Parse(id);
-
-        //    StoreResult store = await storeService.GetById(guid);
-        //    return PartialView("_CreateOrEdit", store);
-        //}
-
+        /// <summary>
+        /// Used for setting the modal that shows <see cref="Store"/> for editing.
+        /// </summary>
+        /// <param name="id">Id of the <see cref="Store"/> that is going to be displayed.</param>
         [HttpGet]
         [Route("Edit")]
-        public async Task<IActionResult> Edit(string? id)
+        public async Task<IActionResult> Edit(Guid id)
         {
-            //Guid guid = Guid.Parse(id);
+            StoreResult store = await storeService.GetById(id);
 
-            //StoreResult store = await storeService.GetById(guid);
-            //return PartialView("_CreateOrEdit", store);
-            return Ok();
-        }
+            StoreCreateUpdateRequest request = new StoreCreateUpdateRequest()
+            {
+                Id = store.Id,
+                Name = store.Name,
+                PostCode = store.PostCode,
+                Address = store.Address,
+                Place = store.Place
+            };
 
-        [HttpGet]
-        [Route("Edit")]
-        public async Task<IActionResult> Edit(Guid? id)
-        {
-            //Guid guid = Guid.Parse(id);
-
-            //StoreResult store = await storeService.GetById(guid);
-            //return PartialView("_CreateOrEdit", store);
-
-            return Ok();
+            return PartialView("_CreateOrEdit", request);
         }
 
         /// <summary>

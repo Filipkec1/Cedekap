@@ -91,6 +91,11 @@ namespace Diplomski.Core.Services.Implementations
                 throw new EntityNotFoundException(typeof(Store), request.Id);
             }
 
+            store.Name = request.Name;
+            store.PostCode = request.PostCode;
+            store.Address = request.Address;
+            store.Place = request.Place;
+
             unitOfWork.Store.Update(store);
             await unitOfWork.Commit();
         }

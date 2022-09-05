@@ -42,11 +42,17 @@
             });
         });
 
+        /**
+         * Edit selected Store.
+         */
         $("#id_store_list_div").on("click", ".EditButton", function (event) {
 
-            var url = $(this).data("url");
+            var url = "@Url.Action("Edit")";
+            var data = $(this).data("url");
 
-            $("#id_store_modal_div").load(url, function () {
+            var urlFin = url + "?id=" + data;
+
+            $("#id_store_modal_div").load(urlFin, function () {
                 $("#id_store_modal").modal("show");
             });
         });
@@ -54,7 +60,7 @@
         /**
          * Close store create/edit modal on click.
          */
-        $("#id_store_modal_div").on("click", "#id_store_modal_close", function (event) {
+        $("#id_store_modal_div").on("click", "#id_store_modal_close", function () {
 
             CloseModalResetForm();
         });
@@ -72,7 +78,7 @@
         /**
          * Send form data, reset form and get new Store list.
          */
-        $("#id_store_modal_div").on("click", "#id_store_save", function (event) {
+        $("#id_store_modal_div").on("click", "#id_store_save", function () {
 
             $("#id_store_list").replaceWith(
                 $.ajax({
