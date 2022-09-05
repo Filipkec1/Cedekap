@@ -105,7 +105,10 @@
         $('.upload-area').on('drop', function (e) {
             e.stopPropagation();
             e.preventDefault();
+
+            document.getElementById("id_dbf_file").files = e.originalEvent.dataTransfer.files
             $("h3").text(e.originalEvent.dataTransfer.files[0].name);
+
         });
 
         // Open file selector on div click
@@ -113,8 +116,10 @@
             $("#id_dbf_file").click();
         });
 
+
         $("#id_dbf_file").change(function () {
-            $("h3").text($('#id_dbf_file')[0].files[0].name);
+            //document.getElementById("id_dbf_file").files = e.originalEvent.dataTransfer.files
+            $("h3").text(document.getElementById("id_dbf_file").files[0].name);
         });
 
     </script>
