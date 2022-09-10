@@ -147,19 +147,9 @@ namespace Diplomski.Infrastructure.EfRepository
             //Month
             bool isMonthSet = false;
 
-            if(request.AfterMonth is not null && request.BeforeMonth is not null)
-            {
-                DateTime afterMonth = (DateTime)request.AfterMonth;
-                DateTime beforeMonth = (DateTime)request.BeforeMonth;
-
-                predicate = predicate.And(p => p.Month.Month >= afterMonth.Month && p.Month.Month <= beforeMonth.Month
-                                          &&  p.Month.Year >= afterMonth.Year && p.Month.Year <= beforeMonth.Year);
-                isMonthSet = true;
-            }
-
             if(request.ExactMonth is not null)
             {
-                DateTime lastmonth = DateTime.Today.AddMonths(-1);
+                DateTime lastmonth = (DateTime)request.ExactMonth;
 
                 predicate = predicate.And(p => p.Month.Month == lastmonth.Month && p.Month.Year == lastmonth.Year);
                 isMonthSet = true;
@@ -171,11 +161,6 @@ namespace Diplomski.Infrastructure.EfRepository
 
                 predicate = predicate.And(p => p.Month.Month == month.Month && p.Month.Year == month.Year);
             }
-
-            //StoreId
-            //foreach(string storeId in request.StoreIdList)
-            //{
-            //}
 
 
             Guid guid = new Guid(request.StoreId);
