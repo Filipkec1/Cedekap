@@ -132,7 +132,7 @@ namespace Diplomski.Web.Controllers
             string requestJson = JsonSerializer.Serialize(request);
 
             //If request is not cached get it from the database and then cache it.
-            if (!cache.TryGetValue(request, out IEnumerable<ArticleResult> articleList))
+            if (!cache.TryGetValue(requestJson, out IEnumerable<ArticleResult> articleList))
             {
                 articleList = await articleService.FilterArticle(request);
 
