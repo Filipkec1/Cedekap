@@ -1,4 +1,4 @@
-INSERT INTO [DiplomskiDb].[Stores].[Store] ([Name], [PostCode], [Address], [Place])
+INSERT INTO [CedekapDb].[Stores].[Store] ([Name], [PostCode], [Address], [Place])
 VALUES 
  ('P1', '10412', 'Odranska ul. 88', 'Donja Lomnica'),
  ('P2', '10410', 'Rakarska ul. 55', 'Velika Gorica'),

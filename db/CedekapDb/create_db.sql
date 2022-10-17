@@ -1,7 +1,7 @@
-CREATE DATABASE [DiplomskiDb];
+CREATE DATABASE [CedekapDb];
 GO
 
-USE [DiplomskiDb];
+USE [CedekapDb];
 GO
 
 IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = 'Stores')
