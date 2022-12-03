@@ -8,6 +8,7 @@
    "ModelNamespace": "Core.Models.Entities",
    "OutputContextPath": "..\\Cedekap.Infrastructure\\EfModels",
    "OutputPath": "..\\Cedekap.Core\\Models\\Entities",
+   "PreserveCasingWithRegex": true,
    "ProjectRootNamespace": "Cedekap",
    "Schemas": null,
    "SelectedHandlebarsLanguage": 0,
@@ -22,7 +23,7 @@
          "ObjectType": 0
       }
    ],
-   "UiHint": "DESKTOP-LG8196C.CedekapDb",
+   "UiHint": "DESKTOP-TLKTI1B.CedekapDb",
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": false,
    "UseDbContextSplitting": false,
@@ -39,5 +40,6 @@
    "UseNodaTime": false,
    "UseNullableReferences": false,
    "UseSchemaFolders": false,
-   "UseSpatial": false
+   "UseSpatial": false,
+   "UseT4": false
 }

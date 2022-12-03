@@ -88,7 +88,7 @@ namespace Cedekap.Web.Controllers
         [Route("List")]
         public IActionResult ListArticles(string jsonString)
         {
-            List<ArticleResult> articleResultList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ArticleResult>>(jsonString);
+            List<ArticleResult>? articleResultList = JsonSerializer.Deserialize<List<ArticleResult>>(jsonString);
             return PartialView("_ArticleList", articleResultList);
         }
 

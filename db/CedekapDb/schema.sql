@@ -48,6 +48,54 @@ CREATE TABLE [Stores].[Article] (
 )
 GO
 
+/*Users*/
+CREATE TABLE [Users].[AspNetRoles] (
+  [Id] nvarchar(128) NOT NULL,
+  [Name] nvarchar(256) NOT NULL,
+  PRIMARY KEY ([Id])
+)
+GO
+
+CREATE TABLE [Users].[AspNetUserClaims] (
+  [Id] int NOT NULL IDENTITY(1, 1),
+  [UserId] nvarchar(128) NOT NULL,
+  [ClaimType] nvarchar(max),
+  [ClaimValue] nvarchar(max),
+  PRIMARY KEY ([Id])
+)
+GO
+
+CREATE TABLE [Users].[AspNetUserLogins] (
+  [LoginProvider] nvarchar(128) NOT NULL,
+  [ProviderKey] nvarchar(128) NOT NULL,
+  [UserId] nvarchar(128) NOT NULL,
+  PRIMARY KEY ([LoginProvider], [ProviderKey], [UserId])
+)
+GO
+
+CREATE TABLE [Users].[AspNetUserRoles] (
+  [UserId] nvarchar(128) NOT NULL,
+  [RoleId] nvarchar(128) NOT NULL,
+  PRIMARY KEY ([UserId], [RoleId])
+)
+GO
+
+CREATE TABLE [Users].[CedekapWebUsers] (
+  [Id] nvarchar(128) NOT NULL,
+  [Email] nvarchar(256),
+  [EmailConfirmed] bit NOT NULL,
+  [PasswordHash] nvarchar(max),
+  [SecurityStamp] nvarchar(max),
+  [PhoneNumber] nvarchar(max),
+  [PhoneNumberConfirmed] bit NOT NULL,
+  [TwoFactorEnabled] bit NOT NULL,
+  [LockoutEndDateUtc] datetime,
+  [LockoutEnabled] bit NOT NULL,
+  [AccessFailedCount] int NOT NULL,
+  [UserName] nvarchar(256) NOT NULL,
+  PRIMARY KEY ([Id])
+)
+GO
 /* Create Primary Keys, Indexes, Uniques, Checks */
 /* Stores */
 CREATE INDEX [IXFK_Article_StoreId] ON [Stores].[Article] ("StoreId")

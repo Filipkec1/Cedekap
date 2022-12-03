@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using Cedekap.Core.Models.Entities;
 
 namespace Cedekap.Web
 {
@@ -29,6 +30,9 @@ namespace Cedekap.Web
                 maker.EnableSensitiveDataLogging(false);
             });
 
+            builder.Services.AddDefaultIdentity<CedekapWebUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                            .AddEntityFrameworkStores<CedekapDbContext>();
+
             builder.Services.Configure<MvcViewOptions>(options =>
             {
                 // Disable hidden checkboxes
@@ -49,6 +53,7 @@ namespace Cedekap.Web
             app.UseStaticFiles();
 
             app.UseRouting();
+                        app.UseAuthentication();;
 
             app.UseAuthorization();
 

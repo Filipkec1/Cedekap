@@ -1,13 +1,11 @@
-﻿using Cedekap.Core.Exceptions;
-using Cedekap.Core.Models.Entities;
+﻿using Cedekap.Core.Models.Entities;
 using Cedekap.Core.Requests;
 using Cedekap.Core.Results;
 using Cedekap.Core.UnitsOfWork;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Cedekap.Core.Services.Implementations
@@ -151,7 +149,7 @@ namespace Cedekap.Core.Services.Implementations
             data.Add(labelList);
             data.Add(labelTitle);
 
-            string jsonString = JsonConvert.SerializeObject(articleList, Formatting.None);
+            string jsonString = JsonSerializer.Serialize(articleList);
             data.Add(jsonString);
 
             return data;
