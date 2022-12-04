@@ -51,6 +51,7 @@ namespace Cedekap.Web
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.MapRazorPages();
 
             app.UseRouting();
                         app.UseAuthentication();;
